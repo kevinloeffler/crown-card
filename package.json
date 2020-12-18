@@ -1,0 +1,28 @@
+{
+  "name": "crown-card",
+  "version": "0.0.1",
+  "description": "A react app with a Postgres db to manage costumer cards for 'The Crown Bar'",
+  "main": "index.js",
+  "scripts": {
+    "test": "run-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinloeffler/crown-card.git"
+  },
+  "keywords": [
+    "React",
+    "Postgres",
+    "Node.js"
+  ],
+  "author": "Kevin Loeffler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinloeffler/crown-card/issues"
+  },
+  "homepage": "https://github.com/kevinloeffler/crown-card#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  }
+}
