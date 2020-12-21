@@ -2,6 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }))
+      .catch(err => err);
+
   return (
     <div className="App">
       <header className="App-header">
