@@ -4,7 +4,9 @@
   "description": "A react app with a Postgres db to manage costumer cards for 'The Crown Bar'",
   "main": "api/app.js",
   "scripts": {
-    "test": "run-test"
+    "go": "bash go.sh",
+    "test": "run-test",
+    "client": "npm start --prefix client"
   },
   "repository": {
     "type": "git",
