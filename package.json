@@ -1,0 +1,24 @@
+{
+  "name": "crown-card",
+  "version": "1.0.0",
+  "description": "A simple web app with a postgres backend to manage the costumer cards of 'the crown bar'",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinloeffler/crown-card.git"
+  },
+  "author": "Kevin Loeffler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinloeffler/crown-card/issues"
+  },
+  "homepage": "https://github.com/kevinloeffler/crown-card#readme"
+}
