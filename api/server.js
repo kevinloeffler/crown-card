@@ -1,12 +1,18 @@
+const path = require('path')
+const rootPath = path.dirname(__dirname)
+
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
-    console.log('request received')
-    res.send('Hello World!');
+    res.sendFile('./app/index.html', {root: rootPath})
 });
 
-const port = process.env.PORT || 3000;
+app.get('/page', function (req, res) {
+    res.sendFile('./app/page.html', {root: rootPath})
+});
+
 app.listen(port, function () {
-    console.log('myapp listening on port ' + port);
+    console.log('API is listening on port ' + port);
 });
