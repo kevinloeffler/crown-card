@@ -41,4 +41,36 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Postgres Stuff
+/*
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
+client.query('SELECT * FROM cards;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
+*/
+// PG
+
+const { Client } = require('pg')
+const client = new Client()
+await client.connect()
+const res = await client.query('SELECT $1::text as message', ['Hello world!'])
+console.log(res.rows[0].message) // Hello world!
+await client.end()
+
+// End of Postgres Stuff
+
 module.exports = app;

@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/kevinloeffler/crown-card#readme",
   "dependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "pg": "^8.5.1"
   }
 }
