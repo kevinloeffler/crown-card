@@ -9,6 +9,12 @@ app.get('/', function (req, res) {
     res.sendFile('./app/index.html', {root: rootPath})
 });
 
+app.get('scripts/main.js',function(req,res){
+    res.setHeader('content-type', 'text/javascript')
+    res.sendFile('./app/scripts/main.js', {root: rootPath})
+})
+
+
 app.get('/page', function (req, res) {
     res.sendFile('./app/page.html', {root: rootPath})
 });
