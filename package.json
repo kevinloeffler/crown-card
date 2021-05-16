@@ -5,12 +5,13 @@
   "main": "index.js",
   "dependencies": {
     "concurrently": "^5.3.0",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "pg": "^8.5.1"
   },
   "scripts": {
     "start": "node api/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon api/server.js",
     "server": "echo \\\"Starting Server...\\n\\\" && node api/server.js"
   },
   "repository": {
@@ -22,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/kevinloeffler/crown-card/issues"
   },
-  "homepage": "https://github.com/kevinloeffler/crown-card#readme"
+  "homepage": "https://github.com/kevinloeffler/crown-card#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
