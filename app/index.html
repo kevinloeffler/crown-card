@@ -10,9 +10,11 @@
 <h1>Crown Card</h1>
 <p id="id-text">None</p>
 
-<form action="/auth" method="post">
+<form action="/card" method="post">
     <label for="auth">Password</label>
-    <input id="auth" name="password" type="password">
+    <input id="auth" name="password" type="password" autocomplete="current-password">
+    <label for="card-id">Card ID</label>
+    <input id="card-id" name="cardID" type="text">
     <button type="submit">Send</button>
 </form>
 
