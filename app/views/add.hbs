@@ -1,0 +1,15 @@
+<h1>Card Page</h1>
+<p>For card: {{cardID}}</p>
+<p>Balance: CHF 100</p>
+
+<p>Add CHF {{amount}} to Card?</p>
+
+<form action="/card/add/success" method="post">
+    <label for="add-money">Add Money</label>
+    <input id="add-money" name="addMoney" type="text">
+    <button>Add Money</button>
+</form>
+
+<form action="/card" method="post">
+    <button>Cancel</button>
+</form>

@@ -1,0 +1,27 @@
+<!--Checkmark Icon-->
+<p>{{activity}}</p>
+<p>Successfully</p>
+
+<p>Automatically returning to
+    Card Overview in <span id="time-remaining">3</span> seconds</p>
+
+<script>
+
+    // Automatic Redirect after 3 Seconds
+    const timeRemainingSpan = document.querySelector('#time-remaining')
+    let timeRemaining = 2
+
+    const intervalID = setInterval(redirect, 1000)
+
+    function redirect () {
+
+        if (timeRemaining > 0) {
+            timeRemainingSpan.innerHTML = timeRemaining.toString()
+            timeRemaining--
+        } else {
+            clearInterval(intervalID)
+            window.location.href = "/card"
+        }
+    }
+
+</script>

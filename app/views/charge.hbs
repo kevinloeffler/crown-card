@@ -1,0 +1,15 @@
+<h1>Card Page</h1>
+<p>For card: {{cardID}}</p>
+<p>Balance: CHF 100</p>
+
+<p>Charge CHF {{amount}} from Card?</p>
+
+<form action="/card/charge/success" method="post">
+    <label for="charge">Charge</label>
+    <input id="charge" name="charge" type="text">
+    <button>Charge</button>
+</form>
+
+<form action="/card" method="post">
+    <button>Cancel</button>
+</form>
