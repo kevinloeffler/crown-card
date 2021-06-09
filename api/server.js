@@ -1,44 +1,90 @@
 // region imports
 // modules
-import {authenticate} from './logic.js'
+import {addMoney, authenticate, chargeMoney, validateCard} from './logic.js'
 // dotenv
 import dotenv from 'dotenv'
 dotenv.config()
-// path
-// import path from 'path'
-// import { fileURLToPath } from 'url'
-// const rootPath = path.dirname(fileURLToPath(import.meta.url))
-const rootPath = process.cwd()
-//express
+// express
 import express from 'express'
 import bodyParser from 'body-parser'
+import session from 'express-session'
+import hbs from 'express-handlebars'
 const app = express()
 const port = process.env.PORT || 3000
+// set root directory
+const rootPath = process.cwd()
 // endregion
 
 // Middleware
 app.use(bodyParser.urlencoded({limit: '5000mb', extended: true, parameterLimit: 100000000000}))
+app.set('view engine', 'hbs')
+app.set('views', rootPath + '/app/views')
+app.engine('hbs', hbs({
+    layoutsDir: rootPath + '/app/views/layouts',
+    extname: 'hbs',
+    defaultLayout: 'main'
+}));
+app.use(session({
+    secret: 'key that will sign the cookie',
+    resave: false,
+    saveUninitialized: false,
+}))
 
 
 // Routes
 app.get('/', function (req, res) {
-    res.sendFile('./app/index.html', {root: rootPath})
+    // req.session.test = 'hello world'
+    res.render('home')
+    // res.sendFile('./app/index.html', {root: rootPath})
 })
-
+/*
 app.get('/scripts/main.js',function(req,res){
     res.setHeader('content-type', 'text/javascript')
     res.sendFile('./app/scripts/main.js', {root: rootPath})
 })
-
-app.post('/auth', function (req, res) {
-    authenticate(req.body.password)
-    res.sendFile('./app/card.html', {root: rootPath})
+*/
+app.post('/card', function (req, res) {
+    if (!req.session.cardID) {
+        if (!authenticate(req.body.password)) {
+            res.render('wrongPassword')
+        } else {
+            req.session.cardID = req.body.cardID
+            req.session.cookie.maxAge = 6000000 // 10 Minutes
+            res.render('card', {cardID: req.session.cardID})
+        }
+    } else {
+        res.render('card', {cardID: req.session.cardID})
+    }
 })
 
-
-app.get('/page', function (req, res) {
-    res.sendFile('./app/page.html', {root: rootPath})
+app.get('/card', function (req, res) {
+    if (!req.session.cardID) {
+        res.send('405 Not allowed - Session Expired')
+    } else {
+        res.render('card', {cardID: req.session.cardID})
+    }
 })
+
+app.post('/card/charge', function (req, res) {
+    if (chargeMoney(req.body.charge)) {
+        res.render('charge', {cardID: req.session.cardID, amount: req.body.charge})
+    }
+})
+
+app.post('/card/charge/success', function (req, res) {
+    res.render('success', {activity: 'Charged'})
+})
+
+app.post('/card/add', function (req, res) {
+    addMoney(req.body.addMoney)
+    res.render('add', {cardID: req.session.cardID, amount: req.body.addMoney})
+})
+
+app.post('/card/add/success', function (req, res) {
+    res.render('success', {activity: 'Added Money'})
+})
+
+// Start App
 
 app.listen(port, function () {
     console.log('API is listening on port ' + port);
