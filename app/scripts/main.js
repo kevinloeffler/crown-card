@@ -6,3 +6,5 @@ console.log('ID: ' + ccID)
 
 // Insert ID into Text Block
 document.getElementById('id-text').innerHTML = 'ID: ' + ccID
+
+document.querySelector('#card-id').value = ccID
