@@ -1,15 +1,70 @@
-<h1>Card Page</h1>
-<p>For card: {{cardID}}</p>
-<p>Balance: CHF 100</p>
+<div>
+    <p>New Balance</p>
+    <p id="new-balance">{{balance}}</p>
+</div>
 
-<p>Charge CHF {{amount}} from Card?</p>
+<div>
+    <p id="charge-value">0.00</p>
 
-<form action="/card/charge/success" method="post">
-    <label for="charge">Charge</label>
-    <input id="charge" name="charge" type="text">
+    <div id="numpad">
+        {{> numbad }}
+    </div>
+
     <button>Charge</button>
-</form>
 
-<form action="/card" method="post">
-    <button>Cancel</button>
-</form>
+    <form action="/card/charge/success" method="post">
+        <label for="charge">Charge</label>
+        <input id="charge" name="charge" type="text">
+<!--        <button>Charge</button>-->
+    </form>
+
+    <form action="/card/">
+        <button>Cancel</button>
+    </form>
+</div>
+
+<script>
+
+    const newBalance = document.querySelector('#new-balance')
+    const chargeValue = document.querySelector('#charge-value')
+    const numpad = document.querySelector('#numpad')
+    numpad.addEventListener('click', handleInput)
+
+    const startingBalance = newBalance.innerHTML
+    let currentInput = 0
+
+    function updateView () {
+        chargeValue.innerHTML = currentInput.toString().slice(0, -2).padStart(1, '0')
+                + '.' + currentInput.toString().slice(-2).padStart(2, '0')
+
+        newBalance.innerHTML = (startingBalance - currentInput / 100).toString()
+    }
+
+    function handleInput (e) {
+        const value = e.target.innerText
+        currentInput = parseInt(currentInput)
+        switch (value) {
+            case '00':
+                currentInput *= 100
+                break
+            case '<':
+                if (currentInput < 10) {
+                    currentInput = 0
+                } else {
+                    let temp = currentInput.toString()
+                    temp = temp.slice(0, -1)
+                    currentInput = parseInt(temp)
+                }
+                break
+            default:
+                currentInput = currentInput * 10 + parseInt(value)
+        }
+        updateView()
+    }
+
+    // ToDo: Check if charge is valid and submit form
+    // document.myform.submit()
+
+    // ToDo: fix js rounding issues, eg input = 12345
+
+</script>
