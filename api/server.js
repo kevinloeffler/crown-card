@@ -1,6 +1,6 @@
 // region imports
 // modules
-import {addMoney, authenticate, chargeMoney, validateCard} from './logic.js'
+import {addMoney, authenticate, chargeMoney, getBalance, validateCard} from './logic.js'
 // dotenv
 import dotenv from 'dotenv'
 dotenv.config()
@@ -33,7 +33,7 @@ app.use(session({
 
 // Routes
 app.get('/', function (req, res) {
-    // req.session.test = 'hello world'
+    req.session.destroy() // reset session
     res.render('home')
     // res.sendFile('./app/index.html', {root: rootPath})
 })
@@ -43,16 +43,21 @@ app.get('/scripts/main.js',function(req,res){
     res.sendFile('./app/scripts/main.js', {root: rootPath})
 })
 */
-app.post('/card', function (req, res) {
+app.post('/card', async function (req, res) {
     if (!req.session.cardID) {
         if (!authenticate(req.body.password)) {
             res.render('wrongPassword')
         } else {
-            req.session.cardID = req.body.cardID
-            req.session.cookie.maxAge = 6000000 // 10 Minutes
-            res.render('card', {cardID: req.session.cardID})
+            if (await validateCard(req.body.cardID)) {
+                req.session.cardID = req.body.cardID
+                req.session.cookie.maxAge = 6000000 // 10 Minutes
+                res.render('card', {cardID: req.session.cardID})
+            } else {
+                res.send('Invalid Card ID')
+            }
         }
     } else {
+        console.log('no checks performed, restored session from cookie')
         res.render('card', {cardID: req.session.cardID})
     }
 })
@@ -65,10 +70,9 @@ app.get('/card', function (req, res) {
     }
 })
 
-app.post('/card/charge', function (req, res) {
-    if (chargeMoney(req.body.charge)) {
-        res.render('charge', {cardID: req.session.cardID, amount: req.body.charge})
-    }
+app.post('/card/charge', async function (req, res) {
+    const balance = await getBalance(req.session.cardID)
+    res.render('charge', {cardID: req.session.cardID, balance: balance})
 })
 
 app.post('/card/charge/success', function (req, res) {
