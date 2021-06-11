@@ -8,10 +8,10 @@ dotenv.config()
 // Database
 
 const pool = new Pool ({
-    user: 'znubloctxscnax',// process.env.DATABASE_USER,
-    host: 'ec2-99-81-238-134.eu-west-1.compute.amazonaws.com',//process.env.DATABASE_HOST,
-    database: 'd2482mpt4j79fj',//process.env.DATABASE,
-    password: '81d91d6ee701445311cc08f5c4f4e83ca27c1e0246de3459ce5fa997d4d5cfd6',//process.env.DATABASE_PW,
+    user: process.env.DATABASE_USER, //'znubloctxscnax'
+    host: process.env.DATABASE_HOST, //'ec2-99-81-238-134.eu-west-1.compute.amazonaws.com'
+    database: process.env.DATABASE, //'d2482mpt4j79fj'
+    password: process.env.DATABASE_PW, //'81d91d6ee701445311cc08f5c4f4e83ca27c1e0246de3459ce5fa997d4d5cfd6'
     port: 5432,
     ssl: { rejectUnauthorized: false }
 })
