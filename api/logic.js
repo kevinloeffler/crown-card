@@ -1,7 +1,8 @@
+import dotenv from 'dotenv'
 import * as pg from 'pg'
+
 const { Pool } = pg.default
 
-import dotenv from 'dotenv'
 dotenv.config()
 
 // Database
@@ -104,10 +105,8 @@ async function getBalance (cardID) {
     return card[0].balance
 }
 
-function chargeMoney (amount) {
-    // Get current card balance
-
-    return true
+async function chargeMoney (cardID, amount) {
+    return await updateCardBalance(cardID, amount)
 }
 
 function addMoney (amount) {

@@ -1,6 +1,8 @@
 <div>
     <p>New Balance</p>
     <p id="new-balance">{{balance}}</p>
+    <p>To Pay</p>
+    <p id="to-pay">0.00</p>
 </div>
 
 <div>
@@ -10,11 +12,11 @@
         {{> numbad }}
     </div>
 
-    <button>Charge</button>
+    <button id="charge-button">Charge</button>
 
-    <form action="/card/charge/success" method="post">
+    <form id="charge-form" action="/card/charge/complete" method="post">
         <label for="charge">Charge</label>
-        <input id="charge" name="charge" type="text">
+        <input id="charge" name="newBalance" type="text">
 <!--        <button>Charge</button>-->
     </form>
 
@@ -26,18 +28,30 @@
 <script>
 
     const newBalance = document.querySelector('#new-balance')
+    const toPay = document.querySelector('#to-pay')
     const chargeValue = document.querySelector('#charge-value')
+    const chargeInput = document.querySelector('#charge')
+    const chargeButton = document.querySelector('#charge-button')
+    const chargeForm = document.querySelector('#charge-form')
     const numpad = document.querySelector('#numpad')
-    numpad.addEventListener('click', handleInput)
 
     const startingBalance = newBalance.innerHTML
     let currentInput = 0
 
-    function updateView () {
-        chargeValue.innerHTML = currentInput.toString().slice(0, -2).padStart(1, '0')
-                + '.' + currentInput.toString().slice(-2).padStart(2, '0')
+    function formatString (string) {
+        return string.toString().slice(0, -2).padStart(1, '0')
+        + '.' + string.toString().slice(-2).padStart(2, '0')
+    }
 
-        newBalance.innerHTML = (startingBalance - currentInput / 100).toString()
+    function updateView () {
+        chargeValue.innerHTML = formatString(currentInput)
+        if (currentInput > startingBalance) {
+            newBalance.innerHTML = '0.00'
+            toPay.innerHTML = formatString(startingBalance - currentInput).toString()
+        } else {
+            newBalance.innerHTML = formatString((startingBalance - currentInput))
+            toPay.innerHTML = '0.00'
+        }
     }
 
     function handleInput (e) {
@@ -62,9 +76,20 @@
         updateView()
     }
 
-    // ToDo: Check if charge is valid and submit form
-    // document.myform.submit()
+    function submitForm () {
+        if (currentInput <= startingBalance) {
+            chargeInput.value = startingBalance - currentInput
+        } else {
+            chargeInput.value = 0
+        }
+        chargeForm.submit()
+    }
 
-    // ToDo: fix js rounding issues, eg input = 12345
+
+    // Format inital balance
+    newBalance.innerHTML = formatString(startingBalance)
+
+    numpad.addEventListener('click', handleInput)
+    chargeButton.addEventListener('click', submitForm)
 
 </script>
