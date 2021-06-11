@@ -7,18 +7,11 @@ dotenv.config()
 
 // Database
 
-console.log(`CREATING DB CONNECTION:
-USER: ${process.env.DATABASE_USER}
-HOST: ${process.env.DATABASE_HOST}
-DATABASE: ${process.env.DATABASE}
-PASSWORD: ${process.env.DATABASE_PW}
-`)
-
 const pool = new Pool ({
-    user: process.env.DATABASE_USER,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE,
-    password: process.env.DATABASE_PW,
+    user: 'znubloctxscnax',// process.env.DATABASE_USER,
+    host: 'ec2-99-81-238-134.eu-west-1.compute.amazonaws.com',//process.env.DATABASE_HOST,
+    database: 'd2482mpt4j79fj',//process.env.DATABASE,
+    password: '81d91d6ee701445311cc08f5c4f4e83ca27c1e0246de3459ce5fa997d4d5cfd6',//process.env.DATABASE_PW,
     port: 5432,
     ssl: { rejectUnauthorized: false }
 })
