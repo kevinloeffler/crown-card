@@ -34,12 +34,7 @@ app.use(session({
 // Routes
 app.get('/', function (req, res) {
     req.session.destroy() // reset session
-    res.render('home', {
-        user: process.env.DATABASE_USER,
-        host: process.env.DATABASE_HOST,
-        db: process.env.DATABASE,
-        pw: process.env.DATABASE_PW,
-    })
+    res.render('home')
     // res.sendFile('./app/index.html', {root: rootPath})
 })
 /*
