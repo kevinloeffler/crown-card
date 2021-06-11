@@ -1,6 +1,10 @@
 <h1>Card Page</h1>
-<p>For card: {{cardID}}</p>
-<p>Balance: CHF 100</p>
+<p>For Card:</p>
+<p>{{ cardID }}</p>
+<p>Card Holder:</p>
+<p>{{ cardHolder }}</p>
+<p>Balance:</p>
+<p id="balance">{{ balance }}</p>
 
 <form action="/card/charge/" method="post">
     <button>Charge</button>
@@ -9,3 +13,19 @@
 <form action="/card/add" method="post">
     <button>Add Money</button>
 </form>
+
+
+<script>
+
+    const balance = document.querySelector('#balance')
+
+    function formatString (string) {
+        return string.toString().slice(0, -2).padStart(1, '0')
+                + '.' + string.toString().slice(-2).padStart(2, '0')
+    }
+
+    // Format inital balance
+    const startingBalance = parseInt(balance.innerHTML)
+    balance.innerHTML = 'CHF ' + formatString(startingBalance)
+
+</script>

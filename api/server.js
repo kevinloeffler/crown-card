@@ -51,22 +51,25 @@ app.post('/card', async function (req, res) {
             if (await validateCard(req.body.cardID)) {
                 req.session.cardID = req.body.cardID
                 req.session.cookie.maxAge = 6000000 // 10 Minutes
-                res.render('card', {cardID: req.session.cardID})
+                const balance = await getBalance(req.session.cardID)
+                res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
             } else {
                 res.send('Invalid Card ID')
             }
         }
     } else {
         console.log('no checks performed, restored session from cookie')
-        res.render('card', {cardID: req.session.cardID})
+        const balance = await getBalance(req.session.cardID)
+        res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
     }
 })
 
-app.get('/card', function (req, res) {
+app.get('/card', async function (req, res) {
     if (!req.session.cardID) {
         res.send('405 Not allowed - Session Expired')
     } else {
-        res.render('card', {cardID: req.session.cardID})
+        const balance = await getBalance(req.session.cardID)
+        res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
     }
 })
 
