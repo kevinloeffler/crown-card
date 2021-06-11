@@ -1,15 +1,83 @@
-<h1>Card Page</h1>
-<p>For card: {{cardID}}</p>
-<p>Balance: CHF 100</p>
+<div>
+    <p>New Balance</p>
+    <p id="new-balance">{{balance}}</p>
+</div>
 
-<p>Add CHF {{amount}} to Card?</p>
+<div>
+    <p id="add-value">0.00</p>
 
-<form action="/card/add/complete" method="post">
-    <label for="add-money">Add Money</label>
-    <input id="add-money" name="addMoney" type="text">
-    <button>Add Money</button>
-</form>
+    <div id="numpad">
+        {{> numbad }}
+    </div>
 
-<form action="/card" method="post">
-    <button>Cancel</button>
-</form>
+    <button id="add-button">Charge</button>
+
+    <form id="add-form" action="/card/add/complete" method="post">
+        <label for="add-money">Charge</label>
+        <input id="add-money" name="newBalance" type="text">
+        <!--        <button>Charge</button>-->
+    </form>
+
+    <form action="/card/">
+        <button>Cancel</button>
+    </form>
+</div>
+
+
+<script>
+
+    const newBalance = document.querySelector('#new-balance')
+    const addValue = document.querySelector('#add-value')
+    const addInput = document.querySelector('#add-money')
+    const addButton = document.querySelector('#add-button')
+    const addForm = document.querySelector('#add-form')
+    const numpad = document.querySelector('#numpad')
+
+    const startingBalance = parseInt(newBalance.innerHTML)
+    let currentInput = 0
+
+    function formatString (string) {
+        return string.toString().slice(0, -2).padStart(1, '0')
+                + '.' + string.toString().slice(-2).padStart(2, '0')
+    }
+
+    function updateView () {
+        addValue.innerHTML = formatString(currentInput)
+        newBalance.innerHTML = formatString(startingBalance + currentInput)
+    }
+
+    function handleInput (e) {
+        const value = e.target.innerText
+        currentInput = parseInt(currentInput)
+        switch (value) {
+            case '00':
+                currentInput *= 100
+                break
+            case '<':
+                if (currentInput < 10) {
+                    currentInput = 0
+                } else {
+                    let temp = currentInput.toString()
+                    temp = temp.slice(0, -1)
+                    currentInput = parseInt(temp)
+                }
+                break
+            default:
+                currentInput = currentInput * 10 + parseInt(value)
+        }
+        updateView()
+    }
+
+    function submitForm () {
+        addInput.value = startingBalance + currentInput
+        addForm.submit()
+    }
+
+    // Format initial balance
+    newBalance.innerHTML = formatString(startingBalance)
+
+    numpad.addEventListener('click', handleInput)
+    addButton.addEventListener('click', submitForm)
+
+</script>
+

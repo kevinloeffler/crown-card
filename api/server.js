@@ -86,13 +86,17 @@ app.post('/card/charge/complete', async function (req, res) {
     }
 })
 
-app.post('/card/add', function (req, res) {
-    addMoney(req.body.addMoney)
-    res.render('add', {cardID: req.session.cardID, amount: req.body.addMoney})
+app.post('/card/add', async function (req, res) {
+    const balance = await getBalance(req.session.cardID)
+    res.render('add', {cardID: req.session.cardID, balance: balance})
 })
 
-app.post('/card/add/complete', function (req, res) {
-    res.render('success', {activity: 'Added Money'})
+app.post('/card/add/complete', async function (req, res) {
+    if (await addMoney(req.session.cardID, req.body.newBalance)) {
+        res.render('success', {activity: 'Added Money'})
+    } else {
+        res.render('failed')
+    }
 })
 
 // Start App

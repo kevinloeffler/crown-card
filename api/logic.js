@@ -109,9 +109,8 @@ async function chargeMoney (cardID, amount) {
     return await updateCardBalance(cardID, amount)
 }
 
-function addMoney (amount) {
-    //ToDo: Add money to card
-    //ToDo: Server Request
+async function addMoney (cardID, amount) {
+    return await updateCardBalance(cardID, amount)
 }
 
 export {authenticate, validateCard, getBalance, chargeMoney, addMoney}
