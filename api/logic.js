@@ -7,6 +7,13 @@ dotenv.config()
 
 // Database
 
+console.log(`CREATING DB CONNECTION:
+USER: ${process.env.DATABASE_USER}
+HOST: ${process.env.DATABASE_HOST}
+DATABASE: ${process.env.DATABASE}
+PASSWORD: ${process.env.DATABASE_PW}
+`)
+
 const pool = new Pool ({
     user: process.env.DATABASE_USER,
     host: process.env.DATABASE_HOST,
