@@ -1,6 +1,6 @@
 <section class="main-section">
 
-    <div class="header home-header">
+    <div class="header login-header">
         <h1>Crown Card</h1>
     </div>
 
@@ -13,10 +13,10 @@
                 </div>
                 <div class="login-pw">
                     <label for="auth">Password:</label>
-                    <input id="auth" name="password" type="password" autocomplete="current-password" tabindex="1">
+                    <input id="auth" placeholder="Enter Password" name="password" type="password" autocomplete="current-password" tabindex="1" autofocus>
                 </div>
             </div>
-            <button id="login-button" type="submit" tabindex="2">Send</button>
+            <button class="login-button" type="submit" tabindex="2">Log in</button>
         </form>
     </div>
 
@@ -30,7 +30,4 @@
 
     // Insert ID into Text Block
     document.querySelector('#card-id').value = ccID
-
-    // Focus password input
-    document.querySelector('#auth').focus()
 </script>

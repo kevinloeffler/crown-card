@@ -53,6 +53,10 @@ input:focus {
 
 body {
     font-family: 'Lato', sans-serif;
+    color: white;
+    background-color: black;
+    max-height: 100vh;
+    /*overflow: hidden;*/
 }
 
 h1 {
@@ -73,11 +77,13 @@ button {
 
 .main-container {
     color: white;
-    padding: var(--standard-padding) var(--standard-padding);
+    padding: 32px var(--standard-padding) 0;
     background-color: black;
 }
 
 .header {
+    color: black;
+    margin-bottom: -20px;
     padding: 0 var(--standard-padding);
 }
 
@@ -87,19 +93,25 @@ button {
 
 .login-container {
     min-height: 100vh;
+    border-radius: 20px 20px 0 0;
 }
 
-.home-header {
-    height: 100px;
+.login-header {
+    height: 160px;
     display: flex;
     align-items: center;
+    background-color: var(--yellow);
+}
+
+.login-id {
+    margin-bottom: 20px;
 }
 
 .login-id label, .login-pw label {
     font-size: 12px;
     color: var(--gray);
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
 }
 
  .login-id input {
@@ -125,6 +137,11 @@ button {
      border-radius: 6px;
  }
 
+ .login-pw input::placeholder {
+     font-size: 20px;
+     transform:translate3d(0, 0, 0)
+ }
+
  .login-form {
      height: 100%;
      display: flex;
@@ -132,8 +149,27 @@ button {
      justify-content: space-between;
  }
 
- #login-button {
+ .login-button {
      position: fixed;
      bottom: 20px;
      width: calc(100vw - 40px);
+     height: 60px;
+     color: var(--yellow);
+     background-color: black;
+     font-weight: bold;
+     border: var(--yellow) 2px solid;
+     border-radius: 12px;
+     transition-duration: 200ms;
+     cursor: pointer;
  }
+
+ .login-button:hover {
+     color: black;
+     background-color: var(--yellow);
+ }
+
+.login-button:focus {
+    outline: none;
+    color: black;
+    background-color: var(--yellow);
+}
