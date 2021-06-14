@@ -1,22 +1,36 @@
-<h1>Crown Card</h1>
-<p id="id-text">None</p>
+<section class="main-section">
 
-<form action="/card" method="post">
-    <label for="auth">Password</label>
-    <input id="auth" name="password" type="password" autocomplete="current-password">
-    <label for="card-id">Card ID</label>
-    <input id="card-id" name="cardID" type="text">
-    <button type="submit">Send</button>
-</form>
+    <div class="header home-header">
+        <h1>Crown Card</h1>
+    </div>
+
+    <div class="main-container login-container">
+        <form action="/card" method="post" class="login-form">
+            <div>
+                <div class="login-id">
+                    <label for="card-id">Card ID:</label>
+                    <input id="card-id" name="cardID" type="text" tabindex="-1">
+                </div>
+                <div class="login-pw">
+                    <label for="auth">Password:</label>
+                    <input id="auth" name="password" type="password" autocomplete="current-password" tabindex="1">
+                </div>
+            </div>
+            <button type="submit" tabindex="2">Send</button>
+        </form>
+    </div>
+
+</section>
 
 <script>
     // Get ID from URL Parameter
     let urlString = window.location.href
     let url = new URL(urlString)
     let ccID = url.searchParams.get('id')
-    console.log('ID: ' + ccID)
 
     // Insert ID into Text Block
-    document.getElementById('id-text').innerHTML = 'ID: ' + ccID
     document.querySelector('#card-id').value = ccID
+
+    // Focus password input
+    document.querySelector('#auth').focus()
 </script>
