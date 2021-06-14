@@ -16,6 +16,7 @@ const rootPath = process.cwd()
 // endregion
 
 // Middleware
+app.use(express.static(rootPath + '/app/public'))
 app.use(bodyParser.urlencoded({limit: '5000mb', extended: true, parameterLimit: 100000000000}))
 app.set('view engine', 'hbs')
 app.set('views', rootPath + '/app/views')
