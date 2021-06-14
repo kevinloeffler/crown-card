@@ -86,7 +86,7 @@ button {
 /* Login */
 
 .login-container {
-    height: calc(100vh - 100px);
+    min-height: 100vh;
 }
 
 .home-header {
@@ -130,4 +130,10 @@ button {
      display: flex;
      flex-direction: column;
      justify-content: space-between;
+ }
+
+ #login-button {
+     position: fixed;
+     bottom: 20px;
+     width: calc(100vw - 40px);
  }
