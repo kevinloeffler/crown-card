@@ -270,6 +270,30 @@ button {
     border-radius: 100px;
 }
 
-
-
 /* Charge */
+
+.small-header-label {
+    color: var(--gray);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.header-number {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.input-value {
+    margin-right: auto;
+    margin-left: auto;
+    width: 200px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Fira Code", monospace;
+    font-size: 32px;
+    color: var(--red);
+    background-color: var(--background);
+    border-radius: 8px;
+}
