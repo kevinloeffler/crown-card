@@ -20,7 +20,7 @@
     --gray: #757575;
     --background: #28251F;
     /* Styles*/
-    --standard-padding: 20px;
+    --standard-padding: 32px;
 }
 
 /*********** Default Style Reset **********/
@@ -97,7 +97,7 @@ button {
 }
 
 .login-header {
-    height: 160px;
+    height: 200px;
     display: flex;
     align-items: center;
     background-color: var(--yellow);
@@ -152,7 +152,7 @@ button {
  .login-button {
      position: fixed;
      bottom: 20px;
-     width: calc(100vw - 40px);
+     width: calc(100vw - 64px);
      height: 60px;
      color: var(--yellow);
      background-color: black;
