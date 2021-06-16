@@ -188,20 +188,33 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
     background-color: var(--yellow);
+    padding-bottom: 20px;
 }
 
 .card-container {
     position: relative;
-    width: 240px;
+    width: 260px;
     background-color: black;
-    padding: 60px 30px 30px 30px;
-    border-radius: 24px;
+    padding: 72px 30px 26px 30px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.card-reflection {
+    background-color: white;
+    opacity: 0.08;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    transform: rotateZ(30deg) translateY(-200px) translateX(50px);
+    filter: blur(6px);
 }
 
 .card-row {
     display: flex;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .card-balance-wrapper {
