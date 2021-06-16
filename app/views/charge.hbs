@@ -42,7 +42,7 @@
     let currentInput = 0
 
     function formatString (string) {
-        return string.toString().slice(0, -2).padStart(1, '0')
+        return 'CHF ' + string.toString().slice(0, -2).padStart(1, '0')
         + '.' + string.toString().slice(-2).padStart(2, '0')
     }
 
@@ -57,11 +57,11 @@
         await animateButtonTap(clickedElement)
         chargeValue.innerHTML = formatString(currentInput)
         if (currentInput > startingBalance) {
-            newBalance.innerHTML = '0.00'
-            toPay.innerHTML = formatString(startingBalance - currentInput).toString()
+            newBalance.innerHTML = 'CHF 0.00'
+            toPay.innerHTML = formatString((startingBalance - currentInput) * -1).toString()
         } else {
             newBalance.innerHTML = formatString((startingBalance - currentInput))
-            toPay.innerHTML = '0.00'
+            toPay.innerHTML = 'CHF 0.00'
         }
     }
 
@@ -101,6 +101,7 @@
 
     // Format inital balance
     newBalance.innerHTML = formatString(startingBalance)
+    toPay.innerHTML = 'CHF 0.00'
 
     numpad.addEventListener('click', handleInput)
     chargeButton.addEventListener('click', submitForm)

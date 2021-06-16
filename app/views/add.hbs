@@ -36,7 +36,7 @@
     let currentInput = 0
 
     function formatString (string) {
-        return string.toString().slice(0, -2).padStart(1, '0')
+        return 'CHF ' + string.toString().slice(0, -2).padStart(1, '0')
                 + '.' + string.toString().slice(-2).padStart(2, '0')
     }
 
