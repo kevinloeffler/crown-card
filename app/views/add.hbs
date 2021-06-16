@@ -1,10 +1,10 @@
-<div>
-    <p>New Balance</p>
-    <p id="new-balance">{{balance}}</p>
+<div class="header add-header">
+    <p class="small-header-label">New Balance</p>
+    <p class="header-number" id="new-balance">{{balance}}</p>
 </div>
 
-<div>
-    <p id="add-value">0.00</p>
+<div class="main-container">
+    <p class="input-value input-value-green" id="add-value">0.00</p>
 
     <div id="numpad">
         {{> numbad }}
@@ -12,14 +12,13 @@
 
     <button id="add-button">Charge</button>
 
+    <form action="/card/">
+        <button id="add-cancel-button">Cancel</button>
+    </form>
+
     <form id="add-form" action="/card/add/complete" method="post">
         <label for="add-money">Charge</label>
         <input id="add-money" name="newBalance" type="text">
-        <!--        <button>Charge</button>-->
-    </form>
-
-    <form action="/card/">
-        <button>Cancel</button>
     </form>
 </div>
 
@@ -41,31 +40,41 @@
                 + '.' + string.toString().slice(-2).padStart(2, '0')
     }
 
-    function updateView () {
+    async function animateButtonTap (element) {
+        element.classList.add('numpad-button-animated')
+        setTimeout( () => {
+            element.classList.remove('numpad-button-animated')
+        }, 100)
+    }
+
+    async function updateView (clickedElement) {
+        await animateButtonTap(clickedElement)
         addValue.innerHTML = formatString(currentInput)
         newBalance.innerHTML = formatString(startingBalance + currentInput)
     }
 
     function handleInput (e) {
-        const value = e.target.innerText
-        currentInput = parseInt(currentInput)
-        switch (value) {
-            case '00':
-                currentInput *= 100
-                break
-            case '<':
-                if (currentInput < 10) {
-                    currentInput = 0
-                } else {
-                    let temp = currentInput.toString()
-                    temp = temp.slice(0, -1)
-                    currentInput = parseInt(temp)
-                }
-                break
-            default:
-                currentInput = currentInput * 10 + parseInt(value)
+        if (e.target !== numpad) {
+            const value = e.target.innerText
+            currentInput = parseInt(currentInput)
+            switch (value) {
+                case '00':
+                    currentInput *= 100
+                    break
+                case '<':
+                    if (currentInput < 10) {
+                        currentInput = 0
+                    } else {
+                        let temp = currentInput.toString()
+                        temp = temp.slice(0, -1)
+                        currentInput = parseInt(temp)
+                    }
+                    break
+                default:
+                    currentInput = currentInput * 10 + parseInt(value)
+            }
+            updateView(e.target)
         }
-        updateView()
     }
 
     function submitForm () {

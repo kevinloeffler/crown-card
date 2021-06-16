@@ -338,3 +338,38 @@ button {
 #charge-form {
     display: none;
 }
+
+/* Add Money */
+
+.add-header {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: var(--green);
+    padding-bottom: 20px;
+}
+
+.input-value-green {
+    color: var(--green);
+}
+
+#add-button {
+    border: none;
+    color: black;
+    background-color: var(--green);
+    width: calc(100vw - 2 * var(--standard-padding));
+    margin: 12px auto 20px;
+}
+
+#add-cancel-button {
+    border: none;
+    color: var(--green);
+    background-color: black;
+}
+
+#add-form {
+    display: none;
+}
