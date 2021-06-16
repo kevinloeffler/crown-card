@@ -1,2 +1,2 @@
 # crown-card
-A small react app with a Postgres db to manage the costumer cards for 'The Crown Bar'
+An express app with a postgres database to administer the cards of crown bar costumers.
