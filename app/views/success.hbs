@@ -1,11 +1,23 @@
-<!--Checkmark Icon-->
-<p>{{activity}}</p>
-<p>Successfully</p>
+<div class="success-container" id="success-container">
+    <div class="success-wrapper">
+        <img class="success-image" src="/images/Checkmark.svg" alt="Checkmark">
+        <p id="activity">{{activity}}</p>
+        <p>Successfully</p>
+    </div>
+</div>
 
-<p>Automatically returning to
-    Card Overview in <span id="time-remaining">3</span> seconds</p>
+<p class="success-countdown">Automatically returning to<br>Card Overview in <span id="time-remaining">3</span> seconds</p>
 
 <script>
+    // Choose background color
+    const activity = document.querySelector('#activity')
+    const successContainer = document.querySelector('#success-container')
+
+    if (activity.textContent === 'Charged') {
+        successContainer.classList.add('success-container-red')
+    } else {
+        successContainer.classList.add('success-container-green')
+    }
 
     // Automatic Redirect after 3 Seconds
     const timeRemainingSpan = document.querySelector('#time-remaining')
