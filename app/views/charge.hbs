@@ -1,11 +1,15 @@
-<div>
-    <p class="small-header-label">New Balance</p>
-    <p class="header-number" id="new-balance">{{balance}}</p>
-    <p class="small-header-label">To Pay</p>
-    <p class="header-number" id="to-pay">0.00</p>
+<div class="header charge-header">
+    <div class="header-number-wrapper">
+        <p class="small-header-label">New Balance</p>
+        <p class="header-number" id="new-balance">{{balance}}</p>
+    </div>
+    <div class="header-number-wrapper">
+        <p class="small-header-label">To Pay</p>
+        <p class="header-number" id="to-pay">0.00</p>
+    </div>
 </div>
 
-<div>
+<div class="main-container">
     <p class="input-value" id="charge-value">0.00</p>
 
     <div id="numpad">
@@ -14,16 +18,15 @@
 
     <button id="charge-button">Charge</button>
 
-    <form id="charge-form" action="/card/charge/complete" method="post">
-        <label for="charge">Charge</label>
-        <input id="charge" name="newBalance" type="text">
-<!--        <button>Charge</button>-->
-    </form>
-
     <form action="/card/">
-        <button>Cancel</button>
+        <button id="charge-cancel-button">Cancel</button>
     </form>
 </div>
+
+<form id="charge-form" action="/card/charge/complete" method="post">
+    <label for="charge">Charge</label>
+    <input id="charge" name="newBalance" type="text">
+</form>
 
 <script>
 
@@ -43,7 +46,15 @@
         + '.' + string.toString().slice(-2).padStart(2, '0')
     }
 
-    function updateView () {
+    async function animateButtonTap (element) {
+        element.classList.add('numpad-button-animated')
+        setTimeout( () => {
+            element.classList.remove('numpad-button-animated')
+        }, 100)
+    }
+
+    async function updateView (clickedElement) {
+        await animateButtonTap(clickedElement)
         chargeValue.innerHTML = formatString(currentInput)
         if (currentInput > startingBalance) {
             newBalance.innerHTML = '0.00'
@@ -55,25 +66,27 @@
     }
 
     function handleInput (e) {
-        const value = e.target.innerText
-        currentInput = parseInt(currentInput)
-        switch (value) {
-            case '00':
-                currentInput *= 100
-                break
-            case '<':
-                if (currentInput < 10) {
-                    currentInput = 0
-                } else {
-                    let temp = currentInput.toString()
-                    temp = temp.slice(0, -1)
-                    currentInput = parseInt(temp)
-                }
-                break
-            default:
-                currentInput = currentInput * 10 + parseInt(value)
+        if (e.target !== numpad) {
+            const value = e.target.innerText
+            currentInput = parseInt(currentInput)
+            switch (value) {
+                case '00':
+                    currentInput *= 100
+                    break
+                case '<':
+                    if (currentInput < 10) {
+                        currentInput = 0
+                    } else {
+                        let temp = currentInput.toString()
+                        temp = temp.slice(0, -1)
+                        currentInput = parseInt(temp)
+                    }
+                    break
+                default:
+                    currentInput = currentInput * 10 + parseInt(value)
+            }
+            updateView(e.target)
         }
-        updateView()
     }
 
     function submitForm () {
