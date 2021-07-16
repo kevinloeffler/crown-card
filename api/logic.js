@@ -83,17 +83,26 @@ function authenticate (key) {
     return false
 }
 
+/*
+* Checks if a cardID is valid, returns
+* -1 = Invalid
+* 0 = Inactive
+* 1 = Active
+*/
 async function validateCard (cardID) {
     const result = await getCard(cardID)
 
     if (Array.isArray(result) && result.length) {
         if (result[0].active) {
             console.log('Valid Card ID')
-            return true
+            return 1
+        } else if (!result[0].active) {
+            console.log('Valid, inactive Card ID')
+            return 0
         }
     }
     console.log('Invalid Card ID')
-    return false
+    return -1
 }
 
 async function getBalance (cardID) {
