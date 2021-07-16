@@ -49,11 +49,15 @@ app.post('/card', async function (req, res) {
         if (!authenticate(req.body.password)) {
             res.render('wrongPassword')
         } else {
-            if (await validateCard(req.body.cardID)) {
+            const cardStatus = await validateCard(req.body.cardID)
+            if (cardStatus === 1) {
                 req.session.cardID = req.body.cardID
                 req.session.cookie.maxAge = 6000000 // 10 Minutes
                 const balance = await getBalance(req.session.cardID)
                 res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
+            } else if (cardStatus === 0) {
+                // TODO: Create new Card
+                res.send('Inactive Card ID')
             } else {
                 res.send('Invalid Card ID')
             }
