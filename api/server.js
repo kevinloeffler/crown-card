@@ -1,6 +1,6 @@
 // region imports
 // modules
-import {addMoney, authenticate, chargeMoney, createNewCard, getBalance, validateCard} from './logic.js'
+import {addMoney, authenticate, chargeMoney, createNewCard, getBalance, getCardHolder, validateCard} from './logic.js'
 // dotenv
 import dotenv from 'dotenv'
 dotenv.config()
@@ -54,11 +54,15 @@ app.post('/card', async function (req, res) {
             if (cardStatus === 1) {
                 req.session.cardID = req.body.cardID
                 req.session.cookie.maxAge = 6000000 // 10 Minutes
+
                 const balance = await getBalance(req.session.cardID)
-                res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
+                const cardHolder = await getCardHolder(req.session.cardID)
+
+                res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: cardHolder})
             } else if (cardStatus === 0) {
                 req.session.cardID = req.body.cardID
                 req.session.cookie.maxAge = 6000000 // 10 Minutes
+
                 res.render('create', {cardID: req.session.cardID})
             } else {
                 res.send('Invalid Card ID')
@@ -91,7 +95,7 @@ app.post('/create/complete', async function (req, res) {
     if (!req.session.cardID) {
         res.send('405 Not allowed - Session Expired')
     } else {
-        await createNewCard(req.session.cardID, req.body.balance, req.body.name, req.body.password, req.body.email) // TODO: Add missing params
+        await createNewCard(req.session.cardID, req.body.balance, req.body.name, req.body.password, req.body.email)
         res.render('success', {activity: 'Created'})
     }
 })
