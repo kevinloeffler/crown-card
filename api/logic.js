@@ -123,6 +123,11 @@ async function getBalance (cardID) {
     return card[0].balance
 }
 
+async function getCardHolder (cardID) {
+    const card = await getCard(cardID)
+    return card[0].holder
+}
+
 async function chargeMoney (cardID, amount) {
     return await updateCardBalance(cardID, amount)
 }
@@ -136,4 +141,4 @@ async function createNewCard (cardID, amount, name, password, email) {
     await updateCardBalance(cardID, amount)
 }
 
-export {authenticate, validateCard, getBalance, chargeMoney, addMoney, createNewCard}
+export {authenticate, validateCard, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard}
