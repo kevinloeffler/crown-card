@@ -13,17 +13,21 @@
     const activity = document.querySelector('#activity')
     const successContainer = document.querySelector('#success-container')
 
-    if (activity.textContent === 'Charged') {
-        successContainer.classList.add('success-container-red')
-    } else {
-        successContainer.classList.add('success-container-green')
+    switch (activity.textContent) {
+        case 'Charged':
+            successContainer.classList.add('success-container-red')
+            break
+        case 'Added':
+            successContainer.classList.add('success-container-green')
+            break
+        case 'Created':
+            successContainer.classList.add('success-container-green')
+            break
     }
 
     // Automatic Redirect after 3 Seconds
     const timeRemainingSpan = document.querySelector('#time-remaining')
     let timeRemaining = 2
-
-    const intervalID = setInterval(redirect, 1000)
 
     function redirect () {
 
@@ -35,5 +39,7 @@
             window.location.href = "/card"
         }
     }
+
+    const intervalID = setInterval(redirect, 1000)
 
 </script>

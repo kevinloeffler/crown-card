@@ -71,6 +71,19 @@ async function updateCardBalance (cardID, newBalance) {
     }
 }
 
+async function activateCard (cardID, name, password = 'NULL', mail = 'NULL') {
+    const query = "UPDATE Cards SET active = true, holder = $1, password = $2, email = $3 WHERE cardID = $4;"
+    const values = [name, password, mail, cardID]
+
+    try {
+        const res = await pool.query(query, values)
+        return true
+    } catch (err) {
+        console.log(err.stack)
+        return false
+    }
+}
+
 
 
 // Request logic
@@ -118,4 +131,9 @@ async function addMoney (cardID, amount) {
     return await updateCardBalance(cardID, amount)
 }
 
-export {authenticate, validateCard, getBalance, chargeMoney, addMoney}
+async function createNewCard (cardID, amount, name, password, email) {
+    await activateCard(cardID, name, password, email)
+    await updateCardBalance(cardID, amount)
+}
+
+export {authenticate, validateCard, getBalance, chargeMoney, addMoney, createNewCard}

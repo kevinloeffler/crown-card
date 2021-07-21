@@ -1,6 +1,6 @@
 // region imports
 // modules
-import {addMoney, authenticate, chargeMoney, getBalance, validateCard} from './logic.js'
+import {addMoney, authenticate, chargeMoney, createNewCard, getBalance, validateCard} from './logic.js'
 // dotenv
 import dotenv from 'dotenv'
 dotenv.config()
@@ -45,6 +45,7 @@ app.get('/scripts/main.js',function(req,res){
 })
 */
 app.post('/card', async function (req, res) {
+    console.log(req.session.cardID)
     if (!req.session.cardID) {
         if (!authenticate(req.body.password)) {
             res.render('wrongPassword')
@@ -56,8 +57,9 @@ app.post('/card', async function (req, res) {
                 const balance = await getBalance(req.session.cardID)
                 res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
             } else if (cardStatus === 0) {
-                // TODO: Create new Card
-                res.send('Inactive Card ID')
+                req.session.cardID = req.body.cardID
+                req.session.cookie.maxAge = 6000000 // 10 Minutes
+                res.render('create', {cardID: req.session.cardID})
             } else {
                 res.send('Invalid Card ID')
             }
@@ -66,6 +68,31 @@ app.post('/card', async function (req, res) {
         console.log('no checks performed, restored session from cookie')
         const balance = await getBalance(req.session.cardID)
         res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
+    }
+})
+
+app.post('/create/holder', function (req, res) {
+    if (!req.session.cardID) {
+        res.send('405 Not allowed - Session Expired')
+    } else {
+        res.render('create-holder', {cardID: req.session.cardID})
+    }
+})
+
+app.post('/create/balance', function (req, res) {
+    if (!req.session.cardID) {
+        res.send('405 Not allowed - Session Expired')
+    } else {
+        res.render('create-balance', {name: req.body.name, mail: req.body.email, password: req.body.password})
+    }
+})
+
+app.post('/create/complete', async function (req, res) {
+    if (!req.session.cardID) {
+        res.send('405 Not allowed - Session Expired')
+    } else {
+        await createNewCard(req.session.cardID, req.body.balance, req.body.name, req.body.password, req.body.email) // TODO: Add missing params
+        res.render('success', {activity: 'Created'})
     }
 })
 

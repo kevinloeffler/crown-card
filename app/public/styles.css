@@ -429,3 +429,7 @@ button {
     bottom: 26px;
     opacity: 0.4;
 }
+
+#balance-form {
+    display: none;
+}

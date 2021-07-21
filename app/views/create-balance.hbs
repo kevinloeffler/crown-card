@@ -1,0 +1,99 @@
+<div class="header add-header">
+    <p class="small-header-label">New Balance</p>
+    <p class="header-number" id="new-balance"></p>
+</div>
+
+<div class="main-container">
+    <p class="input-value input-value-green" id="add-value">0.00</p>
+
+    <div id="numpad">
+        {{> numbad }}
+    </div>
+
+    <button id="add-button">Add Money</button>
+
+    <form action="/create/holder" method="post">
+        <button id="add-cancel-button">Back</button>
+    </form>
+
+    <form id="balance-form" action="/create/complete" method="post">
+        <label for="balance-input">Balance</label>
+        <input id="balance-input" name="balance" type="text">
+        <!-- Previous inputs -->
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" value="{{name}}">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{mail}}">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" value="{{password}}">
+    </form>
+</div>
+
+
+<script>
+
+    const newBalance = document.querySelector('#new-balance')
+    const addValue = document.querySelector('#add-value')
+    const balanceInput = document.querySelector('#balance-input')
+    const addButton = document.querySelector('#add-button')
+    const balanceForm = document.querySelector('#balance-form')
+    const numpad = document.querySelector('#numpad')
+
+    const startingBalance = 0
+    let currentInput = 0
+
+    function formatString (string) {
+        return 'CHF ' + string.toString().slice(0, -2).padStart(1, '0')
+                + '.' + string.toString().slice(-2).padStart(2, '0')
+    }
+
+    async function animateButtonTap (element) {
+        element.classList.add('numpad-button-animated')
+        setTimeout( () => {
+            element.classList.remove('numpad-button-animated')
+        }, 100)
+    }
+
+    async function updateView (clickedElement) {
+        await animateButtonTap(clickedElement)
+        addValue.innerHTML = formatString(currentInput)
+        newBalance.innerHTML = formatString(startingBalance + currentInput)
+    }
+
+    function handleInput (e) {
+        if (e.target !== numpad) {
+            const value = e.target.innerText
+            currentInput = parseInt(currentInput)
+            switch (value) {
+                case '00':
+                    currentInput *= 100
+                    break
+                case '<':
+                    if (currentInput < 10) {
+                        currentInput = 0
+                    } else {
+                        let temp = currentInput.toString()
+                        temp = temp.slice(0, -1)
+                        currentInput = parseInt(temp)
+                    }
+                    break
+                default:
+                    currentInput = currentInput * 10 + parseInt(value)
+            }
+            updateView(e.target)
+        }
+    }
+
+    function submitForm () {
+        balanceInput.value = startingBalance + currentInput
+        balanceForm.submit()
+    }
+
+    // Format initial balance
+    newBalance.innerHTML = formatString(startingBalance)
+
+    numpad.addEventListener('click', handleInput)
+    addButton.addEventListener('click', submitForm)
+
+</script>
+
