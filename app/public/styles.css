@@ -433,3 +433,45 @@ button {
 #balance-form {
     display: none;
 }
+
+/* Create */
+
+.create-section {
+    height: 100vh;
+    padding: 40px 20px 0;
+}
+
+/* Create Holder */
+
+.create-holder-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-holder-form label {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: white;
+}
+
+.create-holder-form input {
+    font-size: 16px;
+    max-width: 300px;
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--background);
+}
+
+.cancel-button {
+    border: none;
+    color: white;
+    background-color: black;
+}
+
+/* Create Balance */
+
+
