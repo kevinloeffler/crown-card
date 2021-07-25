@@ -125,7 +125,11 @@ async function getBalance (cardID) {
 
 async function getCardHolder (cardID) {
     const card = await getCard(cardID)
-    return card[0].holder
+    if (card[0].holder) {
+        return card[0].holder
+    } else {
+        return '-'
+    }
 }
 
 async function chargeMoney (cardID, amount) {
