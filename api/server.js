@@ -36,14 +36,8 @@ app.use(session({
 app.get('/', function (req, res) {
     req.session.destroy() // reset session
     res.render('home')
-    // res.sendFile('./app/index.html', {root: rootPath})
 })
-/*
-app.get('/scripts/main.js',function(req,res){
-    res.setHeader('content-type', 'text/javascript')
-    res.sendFile('./app/scripts/main.js', {root: rootPath})
-})
-*/
+
 app.post('/card', async function (req, res) {
     console.log(req.session.cardID)
     if (!req.session.cardID) {
