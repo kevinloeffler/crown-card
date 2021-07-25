@@ -99,7 +99,9 @@ app.get('/card', async function (req, res) {
         res.send('405 Not allowed - Session Expired')
     } else {
         const balance = await getBalance(req.session.cardID)
-        res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
+        const cardHolder = await getCardHolder(req.session.cardID)
+
+        res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: cardHolder})
     }
 })
 
