@@ -47,7 +47,7 @@ app.post('/card', async function (req, res) {
             const cardStatus = await validateCard(req.body.cardID)
             if (cardStatus === 1) {
                 req.session.cardID = req.body.cardID
-                req.session.cookie.maxAge = 6000000 // 10 Minutes
+                req.session.cookie.maxAge = 6_000_000 // 10 Minutes
 
                 const balance = await getBalance(req.session.cardID)
                 const cardHolder = await getCardHolder(req.session.cardID)
@@ -55,7 +55,7 @@ app.post('/card', async function (req, res) {
                 res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: cardHolder})
             } else if (cardStatus === 0) {
                 req.session.cardID = req.body.cardID
-                req.session.cookie.maxAge = 6000000 // 10 Minutes
+                req.session.cookie.maxAge = 6_000_000 // 10 Minutes
 
                 res.render('create', {cardID: req.session.cardID})
             } else {
