@@ -156,9 +156,11 @@ button {
      justify-content: space-between;
  }
 
- .login-button {
+ .button-gold {
      position: fixed;
-     bottom: 20px;
+     bottom: var(--standard-padding);
+     left: var(--standard-padding);
+     right: var(--standard-padding);
      width: calc(100vw - 2 * var(--standard-padding));
      height: 60px;
      color: var(--yellow);
@@ -170,15 +172,19 @@ button {
      cursor: pointer;
  }
 
- .login-button:hover {
+ .button-gold:hover {
      color: black;
      background-color: var(--yellow);
  }
 
-.login-button:focus {
+.button-gold:focus {
     outline: none;
     color: black;
     background-color: var(--yellow);
+}
+
+.button-move-up {
+    bottom: calc(var(--standard-padding) + 46px);
 }
 
 /* Card */
@@ -443,9 +449,16 @@ button {
 
 /* Create Holder */
 
+.create-holder-form-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .create-holder-form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .create-holder-form label {
@@ -456,7 +469,6 @@ button {
 
 .create-holder-form input {
     font-size: 16px;
-    max-width: 300px;
     padding: 14px 20px;
     margin-bottom: 12px;
     color: white;
@@ -470,6 +482,15 @@ button {
     border: none;
     color: white;
     background-color: black;
+    position: fixed;
+    bottom: calc(var(--standard-padding) / 2);
+    padding: 0;
+    left: 0;
+    right: 0;
+}
+
+.cancel-button:focus {
+
 }
 
 /* Create Balance */
