@@ -1,6 +1,15 @@
 // region imports
 // modules
-import {addMoney, authenticate, chargeMoney, createNewCard, getBalance, getCardHolder, validateCard} from './logic.js'
+import {
+    addMoney,
+    authenticate,
+    chargeMoney,
+    createNewCard,
+    deactivateCard,
+    getBalance,
+    getCardHolder,
+    validateCard
+} from './logic.js'
 // dotenv
 import dotenv from 'dotenv'
 dotenv.config()
@@ -124,6 +133,19 @@ app.post('/card/add', async function (req, res) {
 app.post('/card/add/complete', async function (req, res) {
     if (await addMoney(req.session.cardID, req.body.newBalance)) {
         res.render('success', {activity: 'Added Money'})
+    } else {
+        res.render('failed')
+    }
+})
+
+app.post('/card/delete', async function (req, res) {
+    const balance = await getBalance(req.session.cardID)
+    res.render('confirm-delete', {balance: balance})
+})
+
+app.get('/card/delete/confirm', async function (req, res) {
+    if (await deactivateCard(req.session.cardID)) {
+        res.render('success', {activity: 'Deleted'})
     } else {
         res.render('failed')
     }

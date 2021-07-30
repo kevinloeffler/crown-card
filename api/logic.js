@@ -24,7 +24,7 @@ async function getAllCards () {
 }
 
 async function getCard (cardID) {
-    const query = 'SELECT * from Cards where cardid = $1'
+    const query = 'SELECT * from Cards where cardID = $1'
     const values = [cardID]
 
     try {
@@ -59,6 +59,19 @@ async function updateCardBalance (cardID, newBalance) {
 async function activateCard (cardID, name, password = 'NULL', mail = 'NULL') {
     const query = "UPDATE Cards SET active = true, holder = $1, password = $2, email = $3 WHERE cardID = $4;"
     const values = [name, password, mail, cardID]
+
+    try {
+        await pool.query(query, values)
+        return true
+    } catch (err) {
+        console.log(err.stack)
+        return false
+    }
+}
+
+async function deactivateCardDB (cardID) {
+    const query = "UPDATE Cards SET active = false, balance = 0, holder = NULL, password = NULL, email = NULL WHERE cardID = $1;"
+    const values = [cardID]
 
     try {
         await pool.query(query, values)
@@ -119,8 +132,12 @@ async function addMoney (cardID, amount) {
 }
 
 async function createNewCard (cardID, amount, name, password, email) {
-    await activateCard(cardID, name, password, email)
-    await updateCardBalance(cardID, amount)
+    return await activateCard(cardID, name, password, email) &&
+        await updateCardBalance(cardID, amount)
 }
 
-export {authenticate, validateCard, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard}
+async function deactivateCard (cardID) {
+    return await deactivateCardDB(cardID)
+}
+
+export {authenticate, validateCard, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard}
