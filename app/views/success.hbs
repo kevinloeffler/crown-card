@@ -6,12 +6,16 @@
     </div>
 </div>
 
-<p class="success-countdown">Automatically returning to<br>Card Overview in <span id="time-remaining">3</span> seconds</p>
+<p class="success-countdown">Automatically returning to<br><span id="redirect-location">Card Overview</span> in <span id="time-remaining">3</span> seconds</p>
 
 <script>
-    // Choose background color
+
+    let redirectToCard = true
+
+    // Set mode
     const activity = document.querySelector('#activity')
     const successContainer = document.querySelector('#success-container')
+    const redirectLocation = document.querySelector('#redirect-location')
 
     switch (activity.textContent) {
         case 'Charged':
@@ -22,6 +26,11 @@
             break
         case 'Created':
             successContainer.classList.add('success-container-green')
+            break
+        case 'Deleted':
+            successContainer.classList.add('success-container-red')
+            redirectLocation.innerHTML = 'login'
+            redirectToCard = false
             break
     }
 
@@ -36,7 +45,11 @@
             timeRemaining--
         } else {
             clearInterval(intervalID)
-            window.location.href = "/card"
+            if (redirectToCard) {
+                window.location.href = '/card'
+            } else {
+                window.location.href = '/'
+            }
         }
     }
 
