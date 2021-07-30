@@ -39,7 +39,6 @@ app.get('/', function (req, res) {
 })
 
 app.post('/card', async function (req, res) {
-    console.log(req.session.cardID)
     if (!req.session.cardID) {
         if (!authenticate(req.body.password)) {
             res.render('wrongPassword')
@@ -63,7 +62,6 @@ app.post('/card', async function (req, res) {
             }
         }
     } else {
-        console.log('no checks performed, restored session from cookie')
         const balance = await getBalance(req.session.cardID)
         res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
     }

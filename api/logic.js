@@ -14,27 +14,12 @@ const pool = new Pool ({
 
 pool.connect()
 
-/* THIS WORKS!
-const insertQuery = 'INSERT INTO Cards VALUES($1, $2, $3, $4, $5, $6)'
-const insertValues = ['123123123', '100', 'true', 'Other Test', 'password', 'mail@mail.ch']
-
-pool.query(insertQuery, insertValues, (err, res) => {
-    if (err) {
-        console.log(err.stack)
-    } else {
-        console.log(res.rows)
-    }
-})
-*/
-
 async function getAllCards () {
     const query = 'SELECT * from Cards'
 
     try {
-        const res = await pool.query(query)
-        console.log(res.rows)
+        await pool.query(query)
     } catch (err) {
-        console.log(err.stack)
     }
 }
 
@@ -59,7 +44,7 @@ async function updateCardBalance (cardID, newBalance) {
     const values = [newBalance, cardID]
 
     try {
-        const res = await pool.query(query, values)
+        await pool.query(query, values)
         return true;
     } catch (err) {
         if (err.code === '22P02') {
@@ -76,7 +61,7 @@ async function activateCard (cardID, name, password = 'NULL', mail = 'NULL') {
     const values = [name, password, mail, cardID]
 
     try {
-        const res = await pool.query(query, values)
+        await pool.query(query, values)
         return true
     } catch (err) {
         console.log(err.stack)
@@ -89,11 +74,7 @@ async function activateCard (cardID, name, password = 'NULL', mail = 'NULL') {
 // Request logic
 
 function authenticate (key) {
-    if (key === process.env.AUTH_TOKEN) {
-        console.log('Password Correct')
-        return true
-    }
-    return false
+    return key === process.env.AUTH_TOKEN;
 }
 
 /*
@@ -107,14 +88,11 @@ async function validateCard (cardID) {
 
     if (Array.isArray(result) && result.length) {
         if (result[0].active) {
-            console.log('Valid Card ID')
             return 1
         } else if (!result[0].active) {
-            console.log('Valid, inactive Card ID')
             return 0
         }
     }
-    console.log('Invalid Card ID')
     return -1
 }
 
