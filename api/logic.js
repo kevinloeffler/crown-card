@@ -109,6 +109,11 @@ async function validateCard (cardID) {
     return -1
 }
 
+async function getCardDetails (cardID) {
+    const card = await getCard(cardID)
+    return card[0]
+}
+
 async function getBalance (cardID) {
     const card = await getCard(cardID)
     return card[0].balance
@@ -140,4 +145,4 @@ async function deactivateCard (cardID) {
     return await deactivateCardDB(cardID)
 }
 
-export {authenticate, validateCard, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard}
+export {authenticate, validateCard, getCardDetails, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard}
