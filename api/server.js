@@ -6,7 +6,7 @@ import {
     chargeMoney,
     createNewCard,
     deactivateCard,
-    getBalance,
+    getBalance, getCardDetails,
     getCardHolder,
     validateCard
 } from './logic.js'
@@ -149,6 +149,23 @@ app.get('/card/delete/confirm', async function (req, res) {
     } else {
         res.render('failed')
     }
+})
+
+app.post('/card/details', async function (req, res) {
+    const card = await getCardDetails(req.session.cardID)
+    const holder = card.holder ? card.holder : '-'
+    const status = card.active ? 'Active' : 'Inactive'
+    const mail = card.mail ? card.mail : '-'
+    const pw = card.password ? 'is set' : '-'
+
+    res.render('details', {
+        'cardID': card.cardid,
+        'balance': card.balance,
+        'status': status,
+        'holder': holder,
+        'password': pw,
+        'email': mail,
+    })
 })
 
 // Start App
