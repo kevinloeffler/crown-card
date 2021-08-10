@@ -168,6 +168,12 @@ app.post('/card/details', async function (req, res) {
     })
 })
 
+// Handle all non existing routes
+app.get('*', function(req, res){
+    res.render('404')
+})
+
+
 // Start App
 
 app.listen(port, function () {
