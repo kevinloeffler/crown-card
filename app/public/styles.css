@@ -95,6 +95,10 @@ button {
     padding: 0 var(--standard-padding);
 }
 
+.padding-section {
+    padding: 40px;
+}
+
 /********** Site Specific Styles ***********/
 
 /* Login */
@@ -185,6 +189,52 @@ button {
 
 .button-move-up {
     bottom: calc(var(--standard-padding) + 46px);
+}
+
+/* Wrong Password */
+
+.wrong-password-section h1 {
+    font-size: 32px;
+    padding-bottom: 12px;
+}
+
+/* Operation Failed */
+
+.operation-failed-wrapper {
+    padding: 40px;
+}
+
+.operation-failed-wrapper h1 {
+    font-size: 32px;
+    padding-bottom: 12px;
+}
+
+.operation-failed-wrapper h3 {
+    padding-top: 40px;
+    font-size: 20px;
+    padding-bottom: 8px;
+}
+
+.failed-list {
+    list-style-type: lower-numeric;
+    padding-left: 16px;
+}
+
+.failed-list li {
+    padding-bottom: 8px;
+}
+
+.failed-message {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: var(--background);
+    border: solid var(--gray) 2px;
+}
+
+/* 404 */
+
+.paragraph-top-padding {
+    padding-top: 20px;
 }
 
 /* Card */
