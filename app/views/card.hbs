@@ -20,37 +20,39 @@
 </div>
 
 <div class="main-container">
-    <div class="card-button-container">
-        <form action="/card/charge/" method="post">
-            <button>
-                <img src="/images/Charge Icon.svg" alt="Charge Icon">
-                Charge
-            </button>
-        </form>
+    <div class="main-content">
+        <div class="card-button-container">
+            <form action="/card/charge/" method="post">
+                <button>
+                    <img src="/images/Charge Icon.svg" alt="Charge Icon">
+                    Charge
+                </button>
+            </form>
 
-        <form action="/card/add" method="post">
-            <button>
-                <img src="/images/Add Money Icon.svg" alt="Add Money Icon">
-                Add Money
-            </button>
-        </form>
+            <form action="/card/add" method="post">
+                <button>
+                    <img src="/images/Add Money Icon.svg" alt="Add Money Icon">
+                    Add Money
+                </button>
+            </form>
 
-        <div>
-            <button id="more-button">
-                ...
-            </button>
+            <div>
+                <button id="more-button">
+                    ...
+                </button>
+            </div>
         </div>
-    </div>
 
-    <div id="more-overlay-wrapper" class="more-overlay-wrapper overlay-hidden">
-        <div id="overlay" class="more-overlay more-overlay-hidden">
-            <p>Card Options:</p>
-            <form action="/card/details" method="post">
-                <button class="button-overlay">Card Details</button>
-            </form>
-            <form action="/card/delete" method="post">
-                <button class="button-overlay button-overlay-full">Delete Card</button>
-            </form>
+        <div id="more-overlay-wrapper" class="more-overlay-wrapper overlay-hidden">
+            <div id="overlay" class="more-overlay more-overlay-hidden">
+                <p>Card Options:</p>
+                <form action="/card/details" method="post">
+                    <button class="button-overlay">Card Details</button>
+                </form>
+                <form action="/card/delete" method="post">
+                    <button class="button-overlay button-overlay-full">Delete Card</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

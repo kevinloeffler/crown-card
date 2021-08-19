@@ -5,19 +5,22 @@
     </div>
 
     <div class="main-container login-container">
-        <form action="/card" method="post" class="login-form">
-            <div>
-                <div class="login-id">
-                    <label for="card-id">Card ID:</label>
-                    <input id="card-id" name="cardID" type="text" tabindex="-1">
+        <div class="main-content">
+            <form action="/card" method="post" class="login-form">
+                <div>
+                    <div class="login-id">
+                        <label for="card-id">Card ID:</label>
+                        <input id="card-id" name="cardID" type="text" tabindex="-1">
+                    </div>
+                    <div class="login-pw">
+                        <label for="auth">Password:</label>
+                        <input id="auth" placeholder="Enter Password" name="password" type="password"
+                               autocomplete="current-password" tabindex="1" autofocus>
+                    </div>
                 </div>
-                <div class="login-pw">
-                    <label for="auth">Password:</label>
-                    <input id="auth" placeholder="Enter Password" name="password" type="password" autocomplete="current-password" tabindex="1" autofocus>
-                </div>
-            </div>
-            <button class="button-gold" type="submit" tabindex="2">Log in</button>
-        </form>
+                <button class="button-gold" type="submit" tabindex="2">Log in</button>
+            </form>
+        </div>
     </div>
 
 </section>
