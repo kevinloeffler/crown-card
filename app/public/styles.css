@@ -113,6 +113,13 @@ button {
     padding: 40px;
 }
 
+@media (min-width: 740px) {
+
+    .main-container {
+        padding-top: 44px;
+    }
+}
+
 /********** Site Specific Styles ***********/
 
 /* Login */
