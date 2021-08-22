@@ -480,6 +480,8 @@ button {
     background-color: black;
     -webkit-appearance: none;
     width: 100%;
+    border-radius: 50px;
+    overflow: hidden;
 }
 
 #confirm-range:focus {
@@ -501,6 +503,7 @@ button {
     background: var(--yellow);
     -webkit-appearance: none;
     margin-top: 0;
+    box-shadow: -5px 0 7px rgba(0, 0, 0, 0.33), -1020px 0 0 1000px var(--yellow);
 }
 
 #confirm-range::-moz-range-track {
