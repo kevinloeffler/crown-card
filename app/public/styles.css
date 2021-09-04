@@ -79,6 +79,12 @@ button {
     outline: none;
 }
 
+.bottom-wrapper {
+    position: fixed;
+    bottom: var(--standard-padding);
+    width: calc(100% - 2 * var(--standard-padding));
+}
+
 .main-section {
     height: 100vh;
     overflow: hidden;
@@ -185,11 +191,12 @@ button {
  }
 
  .button-gold {
-     position: fixed;
-     bottom: var(--standard-padding);
+     /*position: fixed;*/
+     /*bottom: var(--standard-padding);*/
      /*left: var(--standard-padding);*/
      /*right: var(--standard-padding);*/
-     width: calc(100vw - 2 * var(--standard-padding));
+     /*width: calc(100vw - 2 * var(--standard-padding));*/
+     width: 100%;
      height: 60px;
      color: var(--yellow);
      background-color: black;
@@ -450,10 +457,6 @@ button {
 
 
 /* Delete */
-
-.confirm-delete-wrapper {
-    padding: 40px;
-}
 
 .confirm-delete-wrapper h1 {
     font-size: 32px;
