@@ -1,0 +1,40 @@
+<section class="details-section">
+    <h1>Card Details</h1>
+
+    <p class="details-label">Card ID</p>
+    <p class="details-text">{{cardID}}</p>
+
+    <p class="details-label">Holder</p>
+    <p class="details-text">{{holder}}</p>
+
+    <p class="details-label">Balance</p>
+    <p class="details-text" id="balance">{{balance}}</p>
+
+    <p class="details-label">Status</p>
+    <p class="details-text">{{status}}</p>
+
+    <p class="details-label">Mail</p>
+    <p class="details-text">{{email}}</p>
+
+    <p class="details-label">Password</p>
+    <p class="details-text">{{password}}</p>
+
+    <div class="bottom-wrapper">
+        <form action="/card" method="post">
+            <button type="submit" class="button-gold">Back</button>
+        </form>
+    </div>
+</section>
+
+<script>
+
+    function formatString (string) {
+        return string.toString().slice(0, -2).padStart(1, '0')
+                + '.' + string.toString().slice(-2).padStart(2, '0')
+    }
+
+    const balance = document.querySelector('#balance')
+
+    balance.innerHTML = formatString(parseInt(balance.innerHTML))
+
+</script>

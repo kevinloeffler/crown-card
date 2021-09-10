@@ -1,6 +1,6 @@
 <div class="header add-header">
     <p class="small-header-label">New Balance</p>
-    <p class="header-number" id="new-balance">{{balance}}</p>
+    <p class="header-number" id="new-balance"></p>
 </div>
 
 <div class="main-container">
@@ -10,15 +10,22 @@
         {{> numbad }}
     </div>
 
-    <button id="add-button">Add Money</button>
+    <button id="add-button">Create Card</button>
 
-    <form action="/card/">
-        <button id="add-cancel-button">Cancel</button>
+    <form action="/create/holder" method="post">
+        <button id="add-cancel-button">Back</button>
     </form>
 
-    <form id="add-form" action="/card/add/complete" method="post">
-        <label for="add-money">Add Money</label>
-        <input id="add-money" name="newBalance" type="text">
+    <form id="balance-form" action="/create/complete" method="post">
+        <label for="balance-input">Balance</label>
+        <input id="balance-input" name="balance" type="text">
+        <!-- Previous inputs -->
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" value="{{name}}">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{mail}}">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" value="{{password}}">
     </form>
 </div>
 
@@ -27,12 +34,12 @@
 
     const newBalance = document.querySelector('#new-balance')
     const addValue = document.querySelector('#add-value')
-    const addInput = document.querySelector('#add-money')
+    const balanceInput = document.querySelector('#balance-input')
     const addButton = document.querySelector('#add-button')
-    const addForm = document.querySelector('#add-form')
+    const balanceForm = document.querySelector('#balance-form')
     const numpad = document.querySelector('#numpad')
 
-    const startingBalance = parseInt(newBalance.innerHTML)
+    const startingBalance = 0
     let currentInput = 0
 
     function formatString (string) {
@@ -78,8 +85,8 @@
     }
 
     function submitForm () {
-        addInput.value = startingBalance + currentInput
-        addForm.submit()
+        balanceInput.value = startingBalance + currentInput
+        balanceForm.submit()
     }
 
     // Format initial balance
