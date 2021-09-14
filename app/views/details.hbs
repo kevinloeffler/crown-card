@@ -1,29 +1,38 @@
-<section class="details-section">
-    <h1>Card Details</h1>
+<section class="main-section">
 
-    <p class="details-label">Card ID</p>
-    <p class="details-text">{{cardID}}</p>
-
-    <p class="details-label">Holder</p>
-    <p class="details-text">{{holder}}</p>
-
-    <p class="details-label">Balance</p>
-    <p class="details-text" id="balance">{{balance}}</p>
-
-    <p class="details-label">Status</p>
-    <p class="details-text">{{status}}</p>
-
-    <p class="details-label">Mail</p>
-    <p class="details-text">{{email}}</p>
-
-    <p class="details-label">Password</p>
-    <p class="details-text">{{password}}</p>
-
-    <div class="bottom-wrapper">
-        <form action="/card" method="post">
-            <button type="submit" class="button-gold">Back</button>
-        </form>
+    <div class="header">
+        <h1>Card<br>Details</h1>
     </div>
+
+    <div class="main-container">
+        <div class="main-content">
+            <p class="details-label">Card ID</p>
+            <p class="details-text">{{cardID}}</p>
+
+            <p class="details-label">Holder</p>
+            <p class="details-text">{{holder}}</p>
+
+            <p class="details-label">Balance</p>
+            <p class="details-text" id="balance">{{balance}}</p>
+
+            <p class="details-label">Status</p>
+            <p class="details-text">{{status}}</p>
+
+            <p class="details-label">Mail</p>
+            <p class="details-text">{{email}}</p>
+
+            <p class="details-label">Password</p>
+            <p class="details-text">{{password}}</p>
+
+            <div class="bottom-wrapper">
+                <form action="/card" method="post">
+                    <button type="submit" class="button-gold">Back</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
 </section>
 
 <script>

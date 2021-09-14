@@ -1,16 +1,28 @@
-<div class="main-container">
-    <div class="create-holder-form-wrapper">
-        <form class="create-holder-form" action="/create/balance" method="post">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password">
-            <button class="button-gold button-move-up" type="submit">Next Step</button>
-        </form>
+<div class="main-section">
+
+    <div class="header">
+        <h1>Card<br>Holder</h1>
     </div>
-    <form action="/">
-        <button class="cancel-button" type="submit">Cancel</button>
-    </form>
+
+    <div class="main-container">
+        <div class="main-content">
+            <form class="create-holder-form" id="create-holder-form" action="/create/balance" method="post">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+            </form>
+        </div>
+
+        <div class="bottom-wrapper">
+            <button class="button-gold button-move-up" type="submit" form="create-holder-form">Next Step</button>
+            <form action="/">
+                <button class="cancel-button" type="submit">Cancel</button>
+            </form>
+        </div>
+
+    </div>
+
 </div>

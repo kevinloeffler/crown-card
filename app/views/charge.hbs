@@ -1,27 +1,29 @@
-<div class="header charge-header">
-    <div class="header-number-wrapper">
-        <p class="small-header-label">New Balance</p>
-        <p class="header-number" id="new-balance">{{balance}}</p>
-    </div>
-    <div class="header-number-wrapper">
-        <p class="small-header-label">To Pay</p>
-        <p class="header-number" id="to-pay">0.00</p>
-    </div>
-</div>
-
-<div class="main-container">
-    <p class="input-value" id="charge-value">0.00</p>
-
-    <div id="numpad">
-        {{> numbad }}
+<section class="main-section">
+    <div class="header charge-header">
+        <div class="header-number-wrapper">
+            <p class="small-header-label">New Balance</p>
+            <p class="header-number" id="new-balance">{{balance}}</p>
+        </div>
+        <div class="header-number-wrapper">
+            <p class="small-header-label">To Pay</p>
+            <p class="header-number" id="to-pay">0.00</p>
+        </div>
     </div>
 
-    <button id="charge-button">Charge</button>
+    <div class="main-container">
+        <p class="input-value" id="charge-value">0.00</p>
 
-    <form action="/card/">
-        <button id="charge-cancel-button">Cancel</button>
-    </form>
-</div>
+        <div id="numpad">
+            {{> numbad }}
+        </div>
+
+        <button id="charge-button">Charge</button>
+
+        <form action="/card/">
+            <button id="charge-cancel-button">Cancel</button>
+        </form>
+    </div>
+</section>
 
 <form id="charge-form" action="/card/charge/complete" method="post">
     <label for="charge">Charge</label>

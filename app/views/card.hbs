@@ -1,64 +1,66 @@
-<div class="header card-header">
-    <div class="card-container">
-        <img class="card-logo" src="/images/Crown Logo.svg" alt="Crown Logo">
-        <div class="card-reflection"></div>
-        <div>
-            <p class="card-label">Holder:</p>
-            <p class="card-text">{{ cardHolder }}</p>
-        </div>
-        <div class="card-row">
-            <div class="card-balance-wrapper">
-                <p class="card-label">Balance:</p>
-                <p class="card-text" id="balance">{{ balance }}</p>
-            </div>
+<section class="main-section">
+    <div class="header card-header">
+        <div class="card-container">
+            <img class="card-logo" src="/images/Crown Logo.svg" alt="Crown Logo">
+            <div class="card-reflection"></div>
             <div>
-                <p class="card-label">Trust:</p>
-                <p class="card-text">High</p>
+                <p class="card-label">Holder:</p>
+                <p class="card-text">{{ cardHolder }}</p>
+            </div>
+            <div class="card-row">
+                <div class="card-balance-wrapper">
+                    <p class="card-label">Balance:</p>
+                    <p class="card-text" id="balance">{{ balance }}</p>
+                </div>
+                <div>
+                    <p class="card-label">Trust:</p>
+                    <p class="card-text">High</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="main-container">
-    <div class="main-content">
-        <div class="card-button-container">
-            <form action="/card/charge/" method="post">
-                <button>
-                    <img src="/images/Charge Icon.svg" alt="Charge Icon">
-                    Charge
-                </button>
-            </form>
+    <div class="main-container">
+        <div class="main-content">
+            <div class="card-button-container">
+                <form action="/card/charge/" method="post">
+                    <button>
+                        <img src="/images/Charge Icon.svg" alt="Charge Icon">
+                        Charge
+                    </button>
+                </form>
 
-            <form action="/card/add" method="post">
-                <button>
-                    <img src="/images/Add Money Icon.svg" alt="Add Money Icon">
-                    Add Money
-                </button>
-            </form>
+                <form action="/card/add" method="post">
+                    <button>
+                        <img src="/images/Add Money Icon.svg" alt="Add Money Icon">
+                        Add Money
+                    </button>
+                </form>
 
-            <div>
-                <button id="more-button">
-                    ...
-                </button>
+                <div>
+                    <button id="more-button">
+                        ...
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <div id="more-overlay-wrapper" class="more-overlay-wrapper overlay-hidden">
-            <div id="overlay" class="more-overlay more-overlay-hidden">
-                <p>Card Options:</p>
-                <form action="/card/details" method="post">
-                    <button class="button-overlay">Card Details</button>
-                </form>
-                <form action="/">
-                    <button class="button-overlay">Log Out</button>
-                </form>
-                <form action="/card/delete" method="post">
-                    <button class="button-overlay button-overlay-full">Delete Card</button>
-                </form>
+            <div id="more-overlay-wrapper" class="more-overlay-wrapper overlay-hidden">
+                <div id="overlay" class="more-overlay more-overlay-hidden">
+                    <p>Card Options:</p>
+                    <form action="/card/details" method="post">
+                        <button class="button-overlay">Card Details</button>
+                    </form>
+                    <form action="/">
+                        <button class="button-overlay">Log Out</button>
+                    </form>
+                    <form action="/card/delete" method="post">
+                        <button class="button-overlay button-overlay-full">Delete Card</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 
 <script>
