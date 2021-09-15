@@ -12,6 +12,7 @@
 
 /********** Global Variables **********/
 
+/* Phones */
 :root {
     /* Colors */
     --yellow: #EEC369;
@@ -21,7 +22,14 @@
     --background: #28251F;
     /* Styles*/
     --standard-padding: 32px;
-    --max-width: 400px;
+    --max-width: 90%;
+}
+
+/* Tablets and up */
+@media (min-width: 740px) {
+    :root {
+        --max-width: 600px;
+    }
 }
 
 /*********** Default Style Reset **********/
@@ -63,11 +71,82 @@ body {
 h1 {
     font-family: 'radwave', sans-serif;
     font-size: 40px;
+    margin-top: 5px; /* Vertically Center */
+}
+
+.main-section {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.header {
+    color: black;
+    background-color: var(--yellow);
+    margin-bottom: -20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+}
+
+.main-container {
+    color: white;
+    background-color: black;
+    border-radius: 20px 20px 0 0;
+    padding-top: var(--standard-padding);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content {
+    width: var(--max-width);
+}
+
+.bottom-wrapper {
+    position: fixed;
+    bottom: var(--standard-padding);
+    width: var(--max-width);
 }
 
 button {
     width: 100%;
-    max-width: var(--max-width);
+    height: 50px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 4px 18px;
+    font-weight: bold;
+    outline: none;
+}
+
+
+
+
+hello{
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: white;
+    background-color: black;
+    max-height: 100vh;
+    touch-action: manipulation; /* Disable iOS double-tap*/
+}
+
+h1 {
+    font-family: 'radwave', sans-serif;
+    font-size: 40px;
+}
+
+button {
+    width: 100%;
     height: 50px;
     font-size: 16px;
     display: flex;
@@ -88,6 +167,8 @@ button {
 .main-section {
     height: 100vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .main-container {
@@ -98,6 +179,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: var(--max-width);
 }
 
 .main-content {

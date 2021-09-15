@@ -1,33 +1,36 @@
-<div class="header add-header">
-    <p class="small-header-label">New Balance</p>
-    <p class="header-number" id="new-balance"></p>
-</div>
+<section class="main-section">
 
-<div class="main-container">
-    <p class="input-value input-value-green" id="add-value">0.00</p>
-
-    <div id="numpad">
-        {{> numbad }}
+    <div class="header add-header">
+        <p class="small-header-label">New Balance</p>
+        <p class="header-number" id="new-balance"></p>
     </div>
 
-    <button id="add-button">Create Card</button>
+    <div class="main-container">
+        <p class="input-value input-value-green" id="add-value">0.00</p>
 
-    <form action="/create/holder" method="post">
-        <button id="add-cancel-button">Back</button>
-    </form>
+        <div id="numpad">
+            {{> numbad }}
+        </div>
 
-    <form id="balance-form" action="/create/complete" method="post">
-        <label for="balance-input">Balance</label>
-        <input id="balance-input" name="balance" type="text">
-        <!-- Previous inputs -->
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" value="{{name}}">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" value="{{mail}}">
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" value="{{password}}">
-    </form>
-</div>
+        <button id="add-button">Create Card</button>
+
+        <form action="/create/holder" method="post">
+            <button id="add-cancel-button">Back</button>
+        </form>
+
+        <form id="balance-form" action="/create/complete" method="post">
+            <label for="balance-input">Balance</label>
+            <input id="balance-input" name="balance" type="text">
+            <!-- Previous inputs -->
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" value="{{name}}">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value="{{mail}}">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" value="{{password}}">
+        </form>
+    </div>
+</section>
 
 
 <script>
