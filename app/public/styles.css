@@ -222,6 +222,12 @@ button {
     bottom: calc(var(--standard-padding) + 46px);
 }
 
+.secondary-button {
+    background-color: transparent;
+    border: none;
+    color: var(--gray);
+}
+
 /* Wrong Password */
 
 .wrong-password-section h1 {

@@ -1,7 +1,7 @@
 // region imports
 // modules
 import {
-    addMoney,
+    addMoney, adminAuthenticate,
     authenticate,
     chargeMoney,
     createNewCard,
@@ -73,6 +73,18 @@ app.post('/card', async function (req, res) {
     } else {
         const balance = await getBalance(req.session.cardID)
         res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
+    }
+})
+
+app.get('/admin/login', function (req, res) {
+    res.render('admin-login')
+})
+
+app.post('/admin', function (req, res) {
+    if (!adminAuthenticate(req.body.password)) {
+        res.render('wrongPassword')
+    } else {
+        res.render('admin')
     }
 })
 

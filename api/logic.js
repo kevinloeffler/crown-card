@@ -87,7 +87,11 @@ async function deactivateCardDB (cardID) {
 // Request logic
 
 function authenticate (key) {
-    return key === process.env.AUTH_TOKEN;
+    return key === process.env.AUTH_TOKEN
+}
+
+function adminAuthenticate (key) {
+    return key === process.env.ADMIN_AUTH_TOKEN
 }
 
 /*
@@ -145,4 +149,4 @@ async function deactivateCard (cardID) {
     return await deactivateCardDB(cardID)
 }
 
-export {authenticate, validateCard, getCardDetails, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard}
+export {authenticate, adminAuthenticate, validateCard, getCardDetails, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard}
