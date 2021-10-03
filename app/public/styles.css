@@ -132,6 +132,13 @@ button {
     border: var(--yellow) solid 2px;
     color: var(--yellow);
     background-color: black;
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.button-gold:hover {
+    color: black;
+    background-color: var(--yellow);
 }
 
 .button-gold-solid {
@@ -139,9 +146,14 @@ button {
     background-color: var(--yellow);
 }
 
+.button-gold-solid:hover {
+    color: var(--yellow);
+    background-color: black;
+}
+
 /********** Site Specific Styles ***********/
 
-/* Home */
+/*** HOME ***/
 
 .login-id label, .login-pw label {
     font-size: 14px;
