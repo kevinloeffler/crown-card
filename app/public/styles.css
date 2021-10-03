@@ -127,6 +127,18 @@ button {
     outline: none;
 }
 
+.button-gold {
+    outline: none;
+    border: var(--yellow) solid 2px;
+    color: var(--yellow);
+    background-color: black;
+}
+
+.button-gold-solid {
+    color: black;
+    background-color: var(--yellow);
+}
+
 /********** Site Specific Styles ***********/
 
 /* Home */
