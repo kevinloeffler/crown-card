@@ -14,6 +14,8 @@ const pool = new Pool ({
 
 pool.connect()
 
+// Queries
+
 async function getAllCards () {
     const query = 'SELECT * from Cards'
 
