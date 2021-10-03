@@ -188,6 +188,151 @@ button {
     transform:translate3d(0, 0, 0)
 }
 
+/*** CARD ***/
+
+.card-header {
+    height: 280px;
+    color: white;
+}
+
+.card-container {
+    position: relative;
+    width: 260px;
+    background-color: black;
+    padding: 72px 30px 26px 30px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.card-reflection {
+    background-color: white;
+    opacity: 0.08;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    transform: rotateZ(30deg) translateY(-200px) translateX(50px);
+    filter: blur(6px);
+}
+
+.card-row {
+    display: flex;
+    margin-top: 16px;
+}
+
+.card-balance-wrapper {
+    margin-right: 32px;
+}
+
+.card-logo {
+    width: 26px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.card-label {
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.card-text {
+    font-family: "Fira Code", monospace;
+    font-size: 20px;
+}
+
+.card-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.card-button-container button {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yellow);
+    background-color: var(--background);
+    border: none;
+    border-radius: 12px;
+    padding: 4px 18px;
+    font-weight: bold;
+}
+
+.card-button-container img {
+    margin-right: 8px;
+}
+
+.more-overlay-wrapper {
+    opacity: 1;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    transition-duration: 450ms;
+    display: flex;
+    justify-content: center;
+}
+
+.overlay-hidden {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.more-overlay-hidden {
+    transform: translateY(120%);
+}
+
+.more-overlay {
+    width: calc(90% - var(--standard-padding));
+    max-width: 360px;
+    position: absolute;
+    bottom: calc(var(--standard-padding) / 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    padding: 20px calc(var(--standard-padding) / 2);
+    border-radius: 20px;
+    text-align: center;
+    transition-duration: 500ms;
+}
+
+.more-overlay p {
+    color: var(--yellow);
+    padding-bottom: 8px;
+}
+
+.more-overlay form {
+    width: 100%;
+}
+
+.button-overlay {
+    width: 100%;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    color: var(--yellow);
+    background-color: transparent;
+    border: var(--yellow) 2px solid;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+.button-overlay-full {
+    color: black;
+    border: none;
+    background-color: var(--yellow);
+}
+
+
+
 
 
 hello{
