@@ -151,6 +151,15 @@ button {
     background-color: black;
 }
 
+.button-secondary {
+    color: var(--yellow);
+    margin-top: 12px;
+    color-rendering: var(--yellow);
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
 /********** Site Specific Styles ***********/
 
 /*** HOME ***/
@@ -407,6 +416,31 @@ button {
     background: var(--yellow);
 }
 /* endregion */
+
+/*** CARD CREATE HOLDER ***/
+
+.create-holder-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.create-holder-form label {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: white;
+}
+
+.create-holder-form input {
+    font-size: 16px;
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--background);
+}
 
 
 
