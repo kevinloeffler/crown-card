@@ -67,7 +67,7 @@ app.post('/card', async function (req, res) {
 
                 res.render('create', {cardID: req.session.cardID})
             } else {
-                res.send('Invalid Card ID')
+                res.render('invalidCardID')
             }
         }
     } else {
