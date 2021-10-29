@@ -443,11 +443,18 @@ button {
     background-color: var(--background);
 }
 
+/*** CARD CREATE BALANCE ***/
+
+#balance-form {
+    display: none;
+}
+
 /*** NUMPAD ***/
 
 .numpad-container {
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 12px;
 }
 
 .numpad-button {
@@ -465,17 +472,24 @@ button {
     background-color: #1d1d1d;
 }
 
-/*** ADD MONEY ***/
+/*** CHARGE / ADD PAGES ***/
 
-.add-header {
-    height: 150px;
+.header-number-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: white;
-    background-color: var(--green);
-    padding-bottom: 20px;
+    margin: 6px 0;
+}
+
+.small-header-label {
+    opacity: 0.4;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.header-number {
+    font-size: 40px;
+    font-weight: 600;
 }
 
 .input-value {
@@ -493,6 +507,50 @@ button {
     background-color: var(--background);
     border-radius: 8px;
 }
+
+/*** CHARGE MONEY ***/
+
+.charge-header {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: var(--red);
+    padding-bottom: 20px;
+}
+
+#charge-button {
+    background-color: var(--red);
+    border: var(--red);
+}
+
+#charge-button:hover {
+    color: black;
+}
+
+#charge-cancel-button {
+    color: var(--gray);
+}
+
+#charge-form {
+    display: none;
+}
+
+/*** ADD MONEY ***/
+
+.add-header {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: var(--green);
+    padding-bottom: 20px;
+}
+
 
 .input-value-green {
     color: var(--green);

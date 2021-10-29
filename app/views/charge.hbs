@@ -1,4 +1,5 @@
 <section class="main-section">
+
     <div class="header charge-header">
         <div class="header-number-wrapper">
             <p class="small-header-label">New Balance</p>
@@ -11,18 +12,21 @@
     </div>
 
     <div class="main-container">
-        <p class="input-value" id="charge-value">0.00</p>
+        <div class="main-content">
+            <p class="input-value" id="charge-value">0.00</p>
 
-        <div id="numpad">
-            {{> numbad }}
+            <div id="numpad">
+                {{> numbad }}
+            </div>
+
+            <button class="button-gold button-gold-solid" id="charge-button">Charge</button>
+
+            <form action="/card/">
+                <button class="button-secondary" id="charge-cancel-button">Cancel</button>
+            </form>
         </div>
-
-        <button id="charge-button">Charge</button>
-
-        <form action="/card/">
-            <button id="charge-cancel-button">Cancel</button>
-        </form>
     </div>
+
 </section>
 
 <form id="charge-form" action="/card/charge/complete" method="post">

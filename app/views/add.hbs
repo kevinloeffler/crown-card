@@ -1,28 +1,32 @@
-<div class="header add-header">
-    <p class="small-header-label">New Balance</p>
-    <p class="header-number" id="new-balance">{{balance}}</p>
-</div>
+<section class="main-section">
 
-<div class="main-container">
-    <div class="main-content">
-        <p class="input-value input-value-green" id="add-value">0.00</p>
-
-        <div id="numpad">
-            {{> numbad }}
-        </div>
-
-        <button class="button-gold button-gold-solid" id="add-button">Add Money</button>
-
-        <form action="/card/">
-            <button class="button-secondary" id="add-cancel-button">Cancel</button>
-        </form>
-
-        <form id="add-form" action="/card/add/complete" method="post">
-            <label for="add-money">Add Money</label>
-            <input id="add-money" name="newBalance" type="text">
-        </form>
+    <div class="header add-header">
+        <p class="small-header-label">New Balance</p>
+        <p class="header-number" id="new-balance">{{balance}}</p>
     </div>
-</div>
+
+    <div class="main-container">
+        <div class="main-content">
+            <p class="input-value input-value-green" id="add-value">CHF 0.00</p>
+
+            <div id="numpad">
+                {{> numbad }}
+            </div>
+
+            <button class="button-gold button-gold-solid" id="add-button">Add Money</button>
+
+            <form action="/card/">
+                <button class="button-secondary" id="add-cancel-button">Cancel</button>
+            </form>
+
+            <form id="add-form" action="/card/add/complete" method="post">
+                <label for="add-money">Add Money</label>
+                <input id="add-money" name="newBalance" type="text">
+            </form>
+        </div>
+    </div>
+
+</section>
 
 
 <script>

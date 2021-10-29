@@ -6,30 +6,33 @@
     </div>
 
     <div class="main-container">
-        <p class="input-value input-value-green" id="add-value">0.00</p>
+        <div class="main-content">
+            <p class="input-value input-value-green" id="add-value">CHF 0.00</p>
 
-        <div id="numpad">
-            {{> numbad }}
+            <div id="numpad">
+                {{> numbad }}
+            </div>
+
+            <button class="button-gold button-gold-solid" id="add-button">Create Card</button>
+
+            <form action="/create/holder" method="post">
+                <button class="button-secondary" id="add-cancel-button">Back</button>
+            </form>
+
+            <form id="balance-form" action="/create/complete" method="post">
+                <label for="balance-input">Balance</label>
+                <input id="balance-input" name="balance" type="text">
+                <!-- Previous inputs -->
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" value="{{name}}">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" value="{{mail}}">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" value="{{password}}">
+            </form>
         </div>
-
-        <button id="add-button">Create Card</button>
-
-        <form action="/create/holder" method="post">
-            <button id="add-cancel-button">Back</button>
-        </form>
-
-        <form id="balance-form" action="/create/complete" method="post">
-            <label for="balance-input">Balance</label>
-            <input id="balance-input" name="balance" type="text">
-            <!-- Previous inputs -->
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" value="{{name}}">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" value="{{mail}}">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" value="{{password}}">
-        </form>
     </div>
+
 </section>
 
 
