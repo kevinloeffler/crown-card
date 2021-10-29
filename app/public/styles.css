@@ -574,7 +574,48 @@ button {
     color: var(--gray);
 }
 
+/*** SUCCESS ***/
 
+.success-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-container p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.success-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -60px;
+}
+
+.success-container-green {
+    background-color: var(--green);
+}
+
+.success-container-red {
+    background-color: var(--red);
+}
+
+.success-image {
+    margin-bottom: 8px;
+}
+
+.success-countdown {
+    width: 100vw;
+    text-align: center;
+    position: absolute;
+    bottom: 26px;
+    opacity: 0.4;
+}
 
 
 hello{
