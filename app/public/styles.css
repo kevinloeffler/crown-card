@@ -158,6 +158,7 @@ button {
     background-color: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 /********** Site Specific Styles ***********/
@@ -463,6 +464,57 @@ button {
 .numpad-button-animated {
     background-color: #1d1d1d;
 }
+
+/*** ADD MONEY ***/
+
+.add-header {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: var(--green);
+    padding-bottom: 20px;
+}
+
+.input-value {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    width: 240px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Fira Code", monospace;
+    font-size: 32px;
+    color: var(--red);
+    background-color: var(--background);
+    border-radius: 8px;
+}
+
+.input-value-green {
+    color: var(--green);
+}
+
+#add-button {
+    background-color: var(--green);
+    border: var(--green);
+}
+
+#add-button:hover {
+    color: black;
+}
+
+#add-form {
+    display: none;
+}
+
+#add-cancel-button {
+    color: var(--gray);
+}
+
 
 
 
