@@ -442,6 +442,28 @@ button {
     background-color: var(--background);
 }
 
+/*** NUMPAD ***/
+
+.numpad-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.numpad-button {
+    font-size: 24px;
+    width: calc(100% / 3);
+    height: 60px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 8px;
+    transition-duration: 50ms;
+}
+
+.numpad-button-animated {
+    background-color: #1d1d1d;
+}
+
 
 
 hello{
@@ -846,28 +868,6 @@ hello{
     background: var(--yellow);
 }
 /* endregion */
-
-/* Numpad */
-
-.numpad-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.numpad-button {
-    font-size: 24px;
-    width: calc(100% / 3);
-    height: 60px;
-    color: white;
-    background-color: black;
-    border: none;
-    border-radius: 8px;
-    transition-duration: 50ms;
-}
-
-.numpad-button-animated {
-    background-color: #1d1d1d;
-}
 
 /* Charge */
 
