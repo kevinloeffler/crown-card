@@ -84,6 +84,42 @@ async function deactivateCardDB (cardID) {
     }
 }
 
+async function getAllTransactionsDB (limit) {
+    const query = 'SELECT * FROM log ORDER BY transactionid DESC LIMIT $1;'
+    const values = [limit]
+
+    try {
+        const res = await pool.query(query, values)
+        return res.rows
+    } catch (err) {
+        console.log(err.stack)
+        return false
+    }
+}
+
+async function getTotalBalanceDB () {
+    const query = 'SELECT SUM(balance) FROM Cards;'
+
+    try {
+        const res = await pool.query(query)
+        return res.rows[0].sum
+    } catch (err) {
+        console.log(err.stack)
+        return false
+    }
+}
+
+async function getCardCountDB () {
+    const query = `SELECT t1.totalCards, t2.activeCards FROM ( SELECT COUNT(*) AS totalCards FROM Cards ) as t1 CROSS JOIN ( SELECT COUNT(*) AS activeCards FROM Cards WHERE active = 'true') as t2;`
+
+    try {
+        const res = await pool.query(query)
+        return res.rows[0]
+    } catch (err) {
+        console.log(err.stack)
+        return false
+    }
+}
 
 
 // Request logic
@@ -151,4 +187,16 @@ async function deactivateCard (cardID) {
     return await deactivateCardDB(cardID)
 }
 
-export {authenticate, adminAuthenticate, validateCard, getCardDetails, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard}
+async function getAllTransactions (limit = 20) {
+    return await getAllTransactionsDB(limit)
+}
+
+async function getTotalBalance () {
+    return await getTotalBalanceDB()
+}
+
+async function getCardCount () {
+    return await getCardCountDB()
+}
+
+export {authenticate, adminAuthenticate, validateCard, getCardDetails, getBalance, getCardHolder, chargeMoney, addMoney, createNewCard, deactivateCard, getAllTransactions, getTotalBalance, getCardCount}
