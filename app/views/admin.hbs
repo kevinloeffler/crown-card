@@ -6,15 +6,75 @@
 
     <div class="main-container">
         <div class="main-content">
-            <h2>Card Used:</h2>
-            <div class="admin-usage-wrapper">
-                <div class="admin-usage-used"></div>
-                <div class="admin-usage-free"></div>
+            <div class="admin-row">
+                <h2 class="admin-title">Cards&nbspUsed:</h2>
+                <div id="admin-usage-wrapper">
+                    <div id="admin-usage-used"></div>
+                </div>
             </div>
-            <h2>Total Value:</h2>
-            <p>{{totalValue}}</p>
+            <div class="admin-row">
+                <h2 class="admin-title">Cards (used / total):</h2>
+                <p id="admin-cards-count" class="admin-text"></p>
+            </div>
+            <div class="admin-row">
+                <h2 class="admin-title">Total Value:</h2>
+                <p id="total-balance" class="admin-text"></p>
+            </div>
+            <h2 class="admin-title">Recent History:</h2>
+            <div id="admin-transaction-wrapper">
+                <!-- Dynamically Generated -->
+            </div>
         </div>
 
     </div>
 
 </section>
+
+<script type="text/javascript">
+
+    const transactionWrapper = document.querySelector('#admin-transaction-wrapper')
+    const adminCardCount = document.querySelector('#admin-cards-count')
+
+    const usedBar = document.querySelector('#admin-usage-used')
+    const usedTotal = document.querySelector('#admin-usage-wrapper')
+    const totalBalanceDiv = document.querySelector('#total-balance')
+    totalBalanceDiv.innerHTML = formatString({{totalBalance}})
+
+    const ratio = 1 / {{totalCards}} * {{activeCards}}
+    const barWidth = usedTotal.offsetWidth
+    const activeWidth = barWidth * ratio
+    usedBar.style.width = `${Math.floor(activeWidth)}px`
+
+    const freeCards = ({{totalCards}} - {{activeCards}})
+    adminCardCount.innerHTML = `{{activeCards}} / ${parseInt(freeCards)}`
+
+    function renderTransactionHistory () {
+        let fragment = `<div class="admin-transaction-separator"></div>`
+        for (const transaction of {{{transactions}}}) {
+            fragment += renderTransactionItem(transaction)
+            fragment += `<div class="admin-transaction-separator"></div>`
+        }
+        transactionWrapper.innerHTML = fragment
+    }
+
+    function renderTransactionItem (item) {
+        let timestamp = item.timestamp
+        timestamp = timestamp.substr(0, 10) + ', ' + timestamp.substr(11, 5)
+        return `
+        <div class="admin-transaction-item">
+            <div class="admin-transaction-item-first-line">
+                <div class="admin-transaction-item-action">${item.action}: ${item.account}</div>
+                <div class="admin-transaction-item-amount">${formatString(item.amount)}</div>
+            </div>
+            <div class="admin-transaction-item-timestamp">${timestamp}</div>
+        </div>`
+    }
+
+    function formatString (string) {
+        return string.toString().slice(0, -2).padStart(1, '0')
+                + '.' + string.toString().slice(-2).padStart(2, '0')
+    }
+
+    renderTransactionHistory()
+
+</script>
