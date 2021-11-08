@@ -22,6 +22,8 @@
             <form id="add-form" action="/card/add/complete" method="post">
                 <label for="add-money">Add Money</label>
                 <input id="add-money" name="newBalance" type="text">
+                <label for="add-transaction">Add Transaction</label>
+                <input id="add-transaction" name="addTransaction" type="text">
             </form>
         </div>
     </div>
@@ -34,6 +36,7 @@
     const newBalance = document.querySelector('#new-balance')
     const addValue = document.querySelector('#add-value')
     const addInput = document.querySelector('#add-money')
+    const addTransaction = document.querySelector('#add-transaction')
     const addButton = document.querySelector('#add-button')
     const addForm = document.querySelector('#add-form')
     const numpad = document.querySelector('#numpad')
@@ -85,6 +88,7 @@
 
     function submitForm () {
         addInput.value = startingBalance + currentInput
+        addTransaction.value = currentInput
         addForm.submit()
     }
 

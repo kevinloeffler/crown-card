@@ -121,6 +121,17 @@ async function getCardCountDB () {
     }
 }
 
+async function log(account, action, amount = 0) {
+    const query = `INSERT INTO log(account, action, amount, timestamp) VALUES($1, $2, $3, now());`
+    const values = [account, action, amount]
+
+    try {
+        const res = await pool.query(query, values)
+    } catch (err) {
+        console.log(err.stack)
+        return false
+    }
+}
 
 // Request logic
 
@@ -170,20 +181,24 @@ async function getCardHolder (cardID) {
     }
 }
 
-async function chargeMoney (cardID, amount) {
+async function chargeMoney (cardID, amount, difference) {
+    await log(cardID, 'Transaction', -difference)
     return await updateCardBalance(cardID, amount)
 }
 
-async function addMoney (cardID, amount) {
+async function addMoney (cardID, amount, difference) {
+    await log(cardID, 'Transaction', difference)
     return await updateCardBalance(cardID, amount)
 }
 
 async function createNewCard (cardID, amount, name, password, email) {
+    await log(cardID, 'Create', amount)
     return await activateCard(cardID, name, password, email) &&
         await updateCardBalance(cardID, amount)
 }
 
 async function deactivateCard (cardID) {
+    await log(cardID, 'Delete', 0)
     return await deactivateCardDB(cardID)
 }
 

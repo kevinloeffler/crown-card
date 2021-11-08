@@ -141,7 +141,7 @@ app.post('/card/charge', async function (req, res) {
 })
 
 app.post('/card/charge/complete', async function (req, res) {
-    if (await chargeMoney(req.session.cardID, req.body.newBalance)) {
+    if (await chargeMoney(req.session.cardID, req.body.newBalance, req.body.chargeTransaction)) {
         res.render('success', {activity: 'Charged'})
     } else {
         res.render('failed')
@@ -154,7 +154,7 @@ app.post('/card/add', async function (req, res) {
 })
 
 app.post('/card/add/complete', async function (req, res) {
-    if (await addMoney(req.session.cardID, req.body.newBalance)) {
+    if (await addMoney(req.session.cardID, req.body.newBalance, req.body.addTransaction)) {
         res.render('success', {activity: 'Added Money'})
     } else {
         res.render('failed')

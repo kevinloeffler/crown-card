@@ -32,6 +32,8 @@
 <form id="charge-form" action="/card/charge/complete" method="post">
     <label for="charge">Charge</label>
     <input id="charge" name="newBalance" type="text">
+    <label for="charge-transaction">Charge Transaction</label>
+    <input id="charge-transaction" name="chargeTransaction" type="text">
 </form>
 
 <script>
@@ -40,6 +42,7 @@
     const toPay = document.querySelector('#to-pay')
     const chargeValue = document.querySelector('#charge-value')
     const chargeInput = document.querySelector('#charge')
+    const chargeTransaction = document.querySelector('#charge-transaction')
     const chargeButton = document.querySelector('#charge-button')
     const chargeForm = document.querySelector('#charge-form')
     const numpad = document.querySelector('#numpad')
@@ -98,9 +101,12 @@
     function submitForm () {
         if (currentInput <= startingBalance) {
             chargeInput.value = startingBalance - currentInput
+            chargeTransaction.value = currentInput
         } else {
             chargeInput.value = 0
+            chargeTransaction.value = startingBalance
         }
+        console.log('chargeTransaction:', chargeTransaction.value)
         chargeForm.submit()
     }
 
