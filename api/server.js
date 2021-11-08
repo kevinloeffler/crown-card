@@ -5,9 +5,9 @@ import {
     authenticate,
     chargeMoney,
     createNewCard,
-    deactivateCard,
-    getBalance, getCardDetails,
-    getCardHolder,
+    deactivateCard, getAllTransactions,
+    getBalance, getCardCount, getCardDetails,
+    getCardHolder, getTotalBalance,
     validateCard
 } from './logic.js'
 // dotenv
@@ -80,11 +80,22 @@ app.get('/admin/login', function (req, res) {
     res.render('admin-login')
 })
 
-app.post('/admin', function (req, res) {
+app.post('/admin', async function (req, res) {
     if (!adminAuthenticate(req.body.password)) {
         res.render('wrongPassword')
     } else {
-        res.render('admin')
+        const totalBalance = await getTotalBalance()
+        const transactions = await getAllTransactions()
+        const cardCount = await getCardCount()
+        const totalCards = cardCount.totalcards
+        const activeCards = cardCount.activecards
+
+        res.render('admin', {
+            totalBalance: totalBalance,
+            totalCards: totalCards,
+            activeCards: activeCards,
+            transactions: JSON.stringify(transactions),
+        })
     }
 })
 
