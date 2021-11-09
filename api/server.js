@@ -80,6 +80,10 @@ app.get('/admin/login', function (req, res) {
     res.render('admin-login')
 })
 
+app.get('/admin', function (req, res) {
+    res.redirect('/admin/login')
+})
+
 app.post('/admin', async function (req, res) {
     if (!adminAuthenticate(req.body.password)) {
         res.render('wrongPassword')
