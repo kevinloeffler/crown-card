@@ -202,7 +202,7 @@ async function deactivateCard (cardID) {
     return await deactivateCardDB(cardID)
 }
 
-async function getAllTransactions (limit = 20) {
+async function getAllTransactions (limit = 999) {
     return await getAllTransactionsDB(limit)
 }
 
