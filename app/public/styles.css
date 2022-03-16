@@ -646,6 +646,15 @@ button {
     background-color: var(--yellow);
 }
 
+#admin-transaction-wrapper {
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+#admin-transaction-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
 .admin-text {
     font-family: "Fira Code", monospace;
     font-size: 22pt;
