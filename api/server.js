@@ -21,7 +21,7 @@ import hbs from 'express-handlebars'
 const app = express()
 const port = process.env.PORT || 3000
 // set root directory
-const rootPath = process.cwd()
+const rootPath = process.env.ROOTPATH || process.cwd()
 // endregion
 
 // Middleware
