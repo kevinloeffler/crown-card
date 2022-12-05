@@ -7,8 +7,6 @@ dotenv.config()
 
 // Database
 
-console.log('HOST:', process.env.DB_HOST)
-
 const pool = new Pool ({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
