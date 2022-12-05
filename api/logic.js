@@ -8,8 +8,14 @@ dotenv.config()
 // Database
 
 const pool = new Pool ({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    //password: ''
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
 })
 
 pool.connect()
