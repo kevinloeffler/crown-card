@@ -205,4 +205,5 @@ app.get('*', function(req, res){
 
 app.listen(port, function () {
     console.log('API is listening on port ' + port);
+    console.log('HOST:', process.env.DB_HOST)
 })
