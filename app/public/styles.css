@@ -627,7 +627,8 @@ button {
 .admin-row {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    /*align-items: baseline;*/
     padding-bottom: 12px;
 }
 

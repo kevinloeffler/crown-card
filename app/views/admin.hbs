@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="admin-row">
-                <h2 class="admin-title">Cards (used / free):</h2>
+                <h2 class="admin-title">Cards (used / total):</h2>
                 <p id="admin-cards-count" class="admin-text"></p>
             </div>
             <div class="admin-row">
@@ -45,8 +45,7 @@
     const activeWidth = barWidth * ratio
     usedBar.style.width = `${Math.floor(activeWidth)}px`
 
-    const freeCards = ({{totalCards}} - {{activeCards}})
-    adminCardCount.innerHTML = `{{activeCards}} / ${parseInt(freeCards)}`
+    adminCardCount.innerHTML = `{{activeCards}} / {{ totalCards }}`
 
     function renderTransactionHistory () {
         let fragment = `<div class="admin-transaction-separator"></div>`
