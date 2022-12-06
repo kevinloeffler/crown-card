@@ -199,6 +199,10 @@ button {
     transform:translate3d(0, 0, 0)
 }
 
+.admin-login-button {
+    color: var(--gray);
+}
+
 /*** CARD ***/
 
 .card-header {
