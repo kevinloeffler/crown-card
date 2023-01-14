@@ -72,7 +72,8 @@ app.post('/card', async function (req, res) {
         }
     } else {
         const balance = await getBalance(req.session.cardID)
-        res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: 'Jane Doe'})
+        const cardHolder = await getCardHolder(req.session.cardID)
+        res.render('card', {cardID: req.session.cardID, balance: balance, cardHolder: cardHolder})
     }
 })
 
