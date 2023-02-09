@@ -196,6 +196,14 @@ app.post('/card/details', async function (req, res) {
     })
 })
 
+// API test route
+app.get('/api-status', async function (req, res) {
+    const testCard = await getCardDetails(123456789)
+    const dbStatus = testCard.cardid === 123456789
+    res.json({name: 'crown card api', server: true, database: dbStatus})
+})
+
+
 // Handle all non existing routes
 app.get('*', function(req, res){
     res.render('404')
